@@ -35,7 +35,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Hello World");
+        
     }
 
 }
