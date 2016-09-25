@@ -12,7 +12,7 @@ public class Voxspell extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("gui/MainMenu.fxml"));
         Scene scene = new Scene(root);
 
-        // Set the title and c  loseRequest.
+        // Set the title and closeRequest.
         stage.setTitle("Voxspell - Kevin Hira");
         stage.setOnCloseRequest(e -> cleanUp());
 
