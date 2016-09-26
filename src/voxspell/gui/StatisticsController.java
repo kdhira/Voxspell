@@ -31,10 +31,10 @@ public class StatisticsController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        loadWords()
+        loadWords();
     }
 
     private void loadWords() {
-        
+
     }
 }
