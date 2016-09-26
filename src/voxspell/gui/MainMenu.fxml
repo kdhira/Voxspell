@@ -61,5 +61,7 @@
             <Label text="Level: 1" />
          </children>
       </VBox>
+      <Button layoutX="288.0" layoutY="14.0" mnemonicParsing="false" text="User Select" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Level Select" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>
