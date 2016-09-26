@@ -1,4 +1,6 @@
 package voxspell.gui;
+import voxspell.SceneSwitcher;
+import voxspell.SceneType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,13 +31,18 @@ public class MainMenuController implements Initializable {
     private Button btnExit;
 
     @FXML
+    void btnNewTestPressed(ActionEvent event) {
+        SceneSwitcher.getInstance().execute(SceneType.NEW_QUIZ);
+    }
+
+    @FXML
     void btnExitPressed(ActionEvent event) {
         Platform.exit();
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
 
 }

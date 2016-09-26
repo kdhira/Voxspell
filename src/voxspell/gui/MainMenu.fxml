@@ -17,17 +17,23 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <VBox alignment="CENTER" layoutX="100.0" layoutY="140.0" prefHeight="200.0" prefWidth="200.0">
+      <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="166.0" prefHeight="174.0" prefWidth="200.0">
          <children>
-            <Button fx:id="btnNewTest" mnemonicParsing="false" prefHeight="20.0" prefWidth="200.0" text="New Test">
+            <Button fx:id="btnNewTest" mnemonicParsing="false" onAction="#btnNewTestPressed" prefHeight="20.0" prefWidth="200.0" text="New Test">
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Start a new test in the current level." />
+               </tooltip>
             </Button>
             <Button fx:id="btnReviewTest" mnemonicParsing="false" prefHeight="20.0" prefWidth="200.0" text="Review Test">
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Start a new test from words you've got incorrect." />
+               </tooltip>
             </Button>
             <BorderPane prefHeight="27.0" prefWidth="135.0">
                <right>
@@ -35,6 +41,9 @@
                      <BorderPane.margin>
                         <Insets top="2.0" />
                      </BorderPane.margin>
+                     <tooltip>
+                        <Tooltip text="Change the settings of Voxspell." />
+                     </tooltip>
                   </Button>
                </right>
                <left>
@@ -42,6 +51,9 @@
                      <BorderPane.margin>
                         <Insets top="2.0" />
                      </BorderPane.margin>
+                     <tooltip>
+                        <Tooltip text="View information on how well you've done." />
+                     </tooltip>
                   </Button>
                </left>
                <VBox.margin>
@@ -52,6 +64,9 @@
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="30.0" />
                </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Quit Voxspell." />
+               </tooltip>
             </Button>
          </children>
       </VBox>
