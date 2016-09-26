@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -7,6 +9,46 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.SpellingTestController">
    <children>
-      <Button fx:id="btnMenu" layoutX="149.0" layoutY="288.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
+      <Button fx:id="btnMenu" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
+      <Label fx:id="lblTitle" layoutX="106.0" layoutY="14.0" text="New Spelling Test">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLevel" layoutX="177.0" layoutY="42.0" text="Level: 1" />
+      <VBox alignment="TOP_CENTER" layoutX="76.0" layoutY="80.0" prefHeight="270.0" prefWidth="250.0">
+         <children>
+            <TextField fx:id="txtResponse">
+               <VBox.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </VBox.margin>
+            </TextField>
+            <BorderPane prefHeight="4.0" prefWidth="262.0">
+               <right>
+                  <Button fx:id="btnReplay" mnemonicParsing="false" text="Replay Word" BorderPane.alignment="CENTER" />
+               </right>
+               <left>
+                  <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#btnSubmitPressed" text="Submit Answer" BorderPane.alignment="CENTER" />
+               </left>
+               <VBox.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </VBox.margin>
+            </BorderPane>
+            <ProgressBar fx:id="pgbProgress" prefHeight="20.0" prefWidth="246.0" progress="0.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </VBox.margin>
+            </ProgressBar>
+            <TextFlow fx:id="tflResults" maxHeight="180.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+               <VBox.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextFlow>
+         </children>
+      </VBox>
+      <ProgressIndicator fx:id="pgiWheel" layoutX="353.0" layoutY="341.0" progress="0.0" />
    </children>
 </AnchorPane>
