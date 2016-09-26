@@ -26,14 +26,6 @@ public class SceneSwitcher {
 
     private Parent getSceneFXML(SceneType newScene) {
         switch (newScene) {
-            case MENU:
-                try {
-                    return FXMLLoader.load(getClass().getResource("gui/MainMenu.fxml"));
-                }
-                catch (IOException e) {
-                    System.err.println("Could not find \"gui/MainMenu.fxml");
-                    break;
-                }
             case NEW_QUIZ:
                 try {
                     return FXMLLoader.load(getClass().getResource("gui/SpellingTest.fxml"));
@@ -42,12 +34,26 @@ public class SceneSwitcher {
                     System.err.println("Could not find \"gui/SpellingTest.fxml");
                     break;
                 }
-
+            case VIEW_STATISTICS:
+                try {
+                    return FXMLLoader.load(getClass().getResource("gui/Statistics.fxml"));
+                }
+                catch (IOException e) {
+                    System.err.println("Could not find \"gui/SpellingTest.fxml");
+                    break;
+                }
             default:
+                System.err.println("Not implemented.");
                 break;
+            case MENU:
+                try {
+                    return FXMLLoader.load(getClass().getResource("gui/MainMenu.fxml"));
+                }
+                catch (IOException e) {
+                    System.err.println("Could not find \"gui/MainMenu.fxml");
+                    break;
+                }
         }
-
-        Platform.exit();
         return null;
     }
 

@@ -47,7 +47,7 @@
                   </Button>
                </right>
                <left>
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="View Statistics" BorderPane.alignment="CENTER">
+                  <Button fx:id="btnViewStatistics" mnemonicParsing="false" onAction="#btnViewStatisticsPressed" prefHeight="27.0" prefWidth="110.0" text="View Statistics" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets top="2.0" />
                      </BorderPane.margin>

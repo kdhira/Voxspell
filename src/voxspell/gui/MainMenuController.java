@@ -25,10 +25,18 @@ public class MainMenuController implements Initializable {
     private Button btnReviewTest;
 
     @FXML
+    private Button btnViewStatistics;
+
+    @FXML
     private Label lblTitle;
 
     @FXML
     private Button btnExit;
+
+    @FXML
+    void btnViewStatisticsPressed(ActionEvent event) {
+        SceneSwitcher.getInstance().execute(SceneType.VIEW_STATISTICS);
+    }
 
     @FXML
     void btnNewTestPressed(ActionEvent event) {
