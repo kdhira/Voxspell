@@ -1,6 +1,4 @@
 package voxspell.gui;
-import voxspell.SceneSwitcher;
-import voxspell.SceneType;
 
 import java.net.URL;
 import java.util.ResourceBundle;

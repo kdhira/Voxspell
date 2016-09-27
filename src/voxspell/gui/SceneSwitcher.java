@@ -1,4 +1,5 @@
-package voxspell;
+package voxspell.gui;
+import voxspell.Voxspell;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,18 +29,18 @@ public class SceneSwitcher {
         switch (newScene) {
             case NEW_QUIZ:
                 try {
-                    return FXMLLoader.load(getClass().getResource("gui/SpellingTest.fxml"));
+                    return FXMLLoader.load(getClass().getResource("SpellingTest.fxml"));
                 }
                 catch (IOException e) {
-                    System.err.println("Could not find \"gui/SpellingTest.fxml");
+                    System.err.println("Could not find \"SpellingTest.fxml");
                     break;
                 }
             case VIEW_STATISTICS:
                 try {
-                    return FXMLLoader.load(getClass().getResource("gui/Statistics.fxml"));
+                    return FXMLLoader.load(getClass().getResource("Statistics.fxml"));
                 }
                 catch (IOException e) {
-                    System.err.println("Could not find \"gui/SpellingTest.fxml");
+                    System.err.println("Could not find \"SpellingTest.fxml");
                     break;
                 }
             default:
@@ -47,10 +48,10 @@ public class SceneSwitcher {
                 break;
             case MENU:
                 try {
-                    return FXMLLoader.load(getClass().getResource("gui/MainMenu.fxml"));
+                    return FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
                 }
                 catch (IOException e) {
-                    System.err.println("Could not find \"gui/MainMenu.fxml");
+                    System.err.println("Could not find \"MainMenu.fxml");
                     break;
                 }
         }

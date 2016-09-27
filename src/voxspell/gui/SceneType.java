@@ -1,4 +1,4 @@
-package voxspell;
+package voxspell.gui;
 
 /**
  * An enumeration for the different scene/view/windows of the application.

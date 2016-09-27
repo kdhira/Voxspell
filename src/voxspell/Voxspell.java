@@ -1,4 +1,6 @@
 package voxspell;
+import voxspell.gui.SceneSwitcher;
+import voxspell.gui.SceneType;
 
 import voxspell.user.User;
 
