@@ -1,4 +1,7 @@
 package voxspell;
+
+import voxspell.user.User;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +18,7 @@ public class Voxspell extends Application {
 
         // Set the title and closeRequest.
         stage.setTitle("Voxspell - Kevin Hira");
-        stage.setOnCloseRequest(e -> cleanUp());
+        // stage.setOnCloseRequest(e -> stop());
 
         // Switch to the main menu and show.
         SceneSwitcher.getInstance().execute(SceneType.MENU);
@@ -28,11 +31,14 @@ public class Voxspell extends Application {
         launch(args);
     }
 
-    public static Stage getApplicationStage() {
-        return _stage;
+    public void stop() {
+        //TODO: Cleanup things.
+        if (User.getInstance() != null) {
+            User.getInstance().save();
+        }
     }
 
-    private void cleanUp() {
-        //TODO: Cleanup things.
+    public static Stage getApplicationStage() {
+        return _stage;
     }
 }

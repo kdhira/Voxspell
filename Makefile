@@ -6,3 +6,7 @@ run: package
 
 package: compile
 	jar cfe dist/Voxspell.jar voxspell.Voxspell -C bin .
+
+test:
+	javac -d functiontest/bin -cp functiontest/src:src functiontest/src/test/Test.java
+	java -cp functiontest/bin:bin test.Test
