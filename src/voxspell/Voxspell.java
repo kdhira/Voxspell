@@ -23,7 +23,7 @@ public class Voxspell extends Application {
         // stage.setOnCloseRequest(e -> stop());
 
         // Switch to the main menu and show.
-        SceneSwitcher.getInstance().execute(SceneType.MENU);
+        SceneSwitcher.getInstance().execute(SceneType.USER_MENU);
 
         // Set it so it can't be resized.
         stage.setResizable(false);

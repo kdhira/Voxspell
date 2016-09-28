@@ -10,3 +10,6 @@ package: compile
 test:
 	javac -d functiontest/bin -cp functiontest/src:src functiontest/src/test/Test.java
 	java -cp functiontest/bin:bin test.Test
+
+clean:
+	rm -f saves/*

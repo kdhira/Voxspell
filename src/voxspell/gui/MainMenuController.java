@@ -1,5 +1,7 @@
 package voxspell.gui;
 
+import voxspell.user.User;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -29,7 +31,22 @@ public class MainMenuController implements Initializable {
     private Label lblTitle;
 
     @FXML
+    private Label lblCurrentUser;
+
+    @FXML
+    private Label lblCurrentTopic;
+
+    @FXML
     private Button btnExit;
+
+    @FXML
+    private Button btnChangeUser;
+
+    @FXML
+    void btnChangeUserPressed(ActionEvent event) {
+        User.getInstance().save();
+        SceneSwitcher.getInstance().execute(SceneType.USER_MENU);
+    }
 
     @FXML
     void btnViewStatisticsPressed(ActionEvent event) {
@@ -48,7 +65,11 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        setTextElements();
+    }
 
+    private void setTextElements() {
+        lblCurrentUser.setText("User: " + User.getInstance().getName());
     }
 
 }

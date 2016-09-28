@@ -53,7 +53,12 @@ public class User implements Serializable {
     public static void switchToUser(String user) {
         File userFile = new File("saves/" + user);
         if (userFile.exists()) {
-            load(userFile);
+            if (userFile.isFile()){
+                load(userFile);
+            }
+            else {
+                throw new RuntimeException();
+            }
         }
         else {
             _userInstance = new User(user);
@@ -80,5 +85,9 @@ public class User implements Serializable {
         catch (IOException e) {
 
         }
+    }
+
+    public String getName() {
+        return _username;
     }
 }

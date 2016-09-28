@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.UserMenuController">
+   <children>
+      <Label fx:id="lblTitle" layoutX="92.0" layoutY="14.0" text="Voxspell Spelling Aid">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAuthor" layoutX="116.0" layoutY="173.0" text="KD Hira, The University of Auckland">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnExit" layoutX="201.0" layoutY="139.0" mnemonicParsing="false" onAction="#btnExitPressed" text="Exit" />
+      <Button fx:id="btnLogin" layoutX="141.0" layoutY="139.0" mnemonicParsing="false" onAction="#btnLoginPressed" text="Login" />
+      <CheckBox fx:id="cbxNewUser" layoutX="92.0" layoutY="101.0" mnemonicParsing="false" onAction="#cbxNewUserSelectedChanged" text="New User:" />
+      <TextField fx:id="txtNewUser" layoutX="190.0" layoutY="96.0" onAction="#txtNewUserTextChanged" prefHeight="27.0" prefWidth="101.0" />
+      <Label layoutX="98.0" layoutY="71.0" text="Select User:" />
+      <ComboBox fx:id="cmbUsers" layoutX="190.0" layoutY="66.0" onAction="#cmbUsersSlectionChanged" prefHeight="27.0" prefWidth="101.0" />
+   </children>
+</AnchorPane>

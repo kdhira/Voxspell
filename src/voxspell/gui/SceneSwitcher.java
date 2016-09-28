@@ -28,34 +28,27 @@ public class SceneSwitcher {
     private Parent getSceneFXML(SceneType newScene) {
         switch (newScene) {
             case NEW_QUIZ:
-                try {
-                    return FXMLLoader.load(getClass().getResource("SpellingTest.fxml"));
-                }
-                catch (IOException e) {
-                    System.err.println("Could not find \"SpellingTest.fxml");
-                    break;
-                }
+                return tryRetrieve("SpellingTest.fxml");
             case VIEW_STATISTICS:
-                try {
-                    return FXMLLoader.load(getClass().getResource("Statistics.fxml"));
-                }
-                catch (IOException e) {
-                    System.err.println("Could not find \"SpellingTest.fxml");
-                    break;
-                }
+                return tryRetrieve("Statistics.fxml");
+            case USER_MENU:
+                return tryRetrieve("UserMenu.fxml");
+            case MENU:
+                return tryRetrieve("MainMenu.fxml");
             default:
                 System.err.println("Not implemented.");
-                break;
-            case MENU:
-                try {
-                    return FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-                }
-                catch (IOException e) {
-                    System.err.println("Could not find \"MainMenu.fxml");
-                    break;
-                }
         }
         return null;
+    }
+
+    private Parent tryRetrieve(String fxml) {
+        try {
+            return FXMLLoader.load(getClass().getResource(fxml));
+        }
+        catch (IOException e) {
+            System.err.println("Could not find \"" + fxml + "\"");
+            return null;
+        }
     }
 
     private Stage getStage() {
