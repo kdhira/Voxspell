@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,16 +22,16 @@ public class User implements Serializable {
 
     private String _username;
     private String _saveLocation;
-    private Map<String, TopicSet> _wordlists;
+    private List<TopicSet> _wordlists;
     private TopicSet _targetWordlist;
     private Integer _topicPointer;
 
     private User(String name) {
         _username = name;
         _saveLocation = SAVE_DIRECTORY + name;
-        _wordlists = new HashMap<String, TopicSet>();
+        _wordlists = new ArrayList<TopicSet>();
         _targetWordlist = null;
-        _topicPointer = 0;
+        _topicPointer = -1;
     }
 
     public static User getInstance() {
@@ -45,7 +47,7 @@ public class User implements Serializable {
         }
 
         if (_userInstance != null) {
-            for (TopicSet t : _userInstance._wordlists.values()) {
+            for (TopicSet t : _userInstance._wordlists) {
                 t.buildTopicSet();
             }
         }
@@ -74,9 +76,18 @@ public class User implements Serializable {
     }
 
     public void addWordlist(String name) {
-        if (!_wordlists.containsKey(name)) {
-            _wordlists.put(name, new TopicSet(name));
+        if (find(name) == null) {
+            _wordlists.add(new TopicSet(name));
         }
+    }
+
+    private TopicSet find(String name) {
+        for (TopicSet t : _wordlists) {
+            if (t.getName() == name) {
+                return t;
+            }
+        }
+        return null;
     }
 
     public void save() {
@@ -87,6 +98,26 @@ public class User implements Serializable {
         catch (IOException e) {
 
         }
+    }
+
+    public List<TopicSet> getTopicSets() {
+        return _wordlists;
+    }
+
+    public TopicSet getSelectedTopicSet() {
+        return _targetWordlist;
+    }
+
+    public void setSelectedTopicSet(TopicSet t) {
+        _targetWordlist = t;
+    }
+
+    public int getTopicLevel() {
+        return _topicPointer;
+    }
+
+    public void setTopicLevel(int p) {
+        _topicPointer = p;
     }
 
     public String getName() {

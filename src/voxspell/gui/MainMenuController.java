@@ -43,9 +43,18 @@ public class MainMenuController implements Initializable {
     private Button btnChangeUser;
 
     @FXML
+    private Button btnChangeLevel;
+
+    @FXML
     void btnChangeUserPressed(ActionEvent event) {
         User.getInstance().save();
         SceneSwitcher.getInstance().execute(SceneType.USER_MENU);
+    }
+
+    @FXML
+    void btnChangeLevelPressed(ActionEvent event) {
+        User.getInstance().save();
+        SceneSwitcher.getInstance().execute(SceneType.TOPIC_MENU);
     }
 
     @FXML
@@ -70,6 +79,8 @@ public class MainMenuController implements Initializable {
 
     private void setTextElements() {
         lblCurrentUser.setText("User: " + User.getInstance().getName());
+
+        lblCurrentTopic.setText("Level/Topic: " + User.getInstance().getSelectedTopicSet().atPosition(User.getInstance().getTopicLevel()).getName() + " (" + User.getInstance().getTopicLevel() + ")");
     }
 
 }

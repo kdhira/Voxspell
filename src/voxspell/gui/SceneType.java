@@ -5,5 +5,5 @@ package voxspell.gui;
  * @author Kevin Hira.
  */
 public enum SceneType {
-    MENU, NEW_QUIZ, VIEW_STATISTICS, SETTINGS, USER_MENU, INVALID
+    MENU, NEW_QUIZ, VIEW_STATISTICS, SETTINGS, USER_MENU, TOPIC_MENU, INVALID
 }

@@ -33,6 +33,8 @@ public class SceneSwitcher {
                 return tryRetrieve("Statistics.fxml");
             case USER_MENU:
                 return tryRetrieve("UserMenu.fxml");
+            case TOPIC_MENU:
+                return tryRetrieve("TopicMenu.fxml");
             case MENU:
                 return tryRetrieve("MainMenu.fxml");
             default:
@@ -51,7 +53,7 @@ public class SceneSwitcher {
         }
     }
 
-    private Stage getStage() {
+    public Stage getStage() {
         return Voxspell.getApplicationStage();
     }
 

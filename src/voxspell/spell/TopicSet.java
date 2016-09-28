@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.File;
 
 public class TopicSet implements Serializable {
     private String _fileName;
@@ -75,6 +76,14 @@ public class TopicSet implements Serializable {
         return t;
     }
 
+    public Topic atPosition(int i) {
+        return _topicProgression.get(i);
+    }
+
+    public int size() {
+        return _topicProgression.size();
+    }
+
     private Topic get(String topicName) {
         for (Topic t : _topicPool.values()) {
             if (t.getName().equals(topicName)) {
@@ -82,6 +91,10 @@ public class TopicSet implements Serializable {
             }
         }
         return null;
+    }
+
+    public String getName() {
+        return _fileName;
     }
 
 }

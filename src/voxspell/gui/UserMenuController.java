@@ -48,7 +48,12 @@ public class UserMenuController implements Initializable {
     @FXML
     void btnLoginPressed(ActionEvent event) {
         User.switchToUser(cbxNewUser.isSelected()?txtNewUser.getText():cmbUsers.getValue());
-        SceneSwitcher.getInstance().execute(SceneType.MENU);
+        if (User.getInstance().getSelectedTopicSet() == null) {
+            SceneSwitcher.getInstance().execute(SceneType.TOPIC_MENU);
+        }
+        else {
+            SceneSwitcher.getInstance().execute(SceneType.MENU);
+        }
     }
 
     @FXML
