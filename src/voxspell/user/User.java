@@ -22,12 +22,14 @@ public class User implements Serializable {
     private String _saveLocation;
     private Map<String, TopicSet> _wordlists;
     private TopicSet _targetWordlist;
+    private Integer _topicPointer;
 
     private User(String name) {
         _username = name;
         _saveLocation = SAVE_DIRECTORY + name;
         _wordlists = new HashMap<String, TopicSet>();
         _targetWordlist = null;
+        _topicPointer = 0;
     }
 
     public static User getInstance() {
