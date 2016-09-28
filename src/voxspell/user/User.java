@@ -42,7 +42,7 @@ public class User implements Serializable {
 
         }
 
-        if (_userInstance == null) {
+        if (_userInstance != null) {
             for (TopicSet t : _userInstance._wordlists.values()) {
                 t.buildTopicSet();
             }
