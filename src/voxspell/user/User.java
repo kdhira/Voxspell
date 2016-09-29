@@ -75,10 +75,12 @@ public class User implements Serializable {
 
     }
 
-    public void addWordlist(String name) {
+    public boolean addWordlist(String name) {
         if (find(name) == null) {
             _wordlists.add(new TopicSet(name));
+            return true;
         }
+        return false;
     }
 
     private TopicSet find(String name) {

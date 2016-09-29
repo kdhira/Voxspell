@@ -63,20 +63,36 @@ public class TopicMenuController implements Initializable {
         FileChooser fChooser = new FileChooser();
         fChooser.setTitle("Open Word List");
         fChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-        fChooser.setInitialDirectory(new File("./"));
-        
+        fChooser.setInitialDirectory(new File("./resources"));
+
         File f = fChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
 
         if (f != null) {
             try {
-                User.getInstance().addWordlist(f.getCanonicalPath());
+                if (User.getInstance().addWordlist(f.getCanonicalPath())) {
+                    cmbWordlists.getItems().add(f.getName());
+                    int newTopicIndex = User.getInstance().getTopicSets().size()-1;
+                    cmbWordlists.getSelectionModel().select(newTopicIndex);
+                }
             }
             catch (IOException e) {
 
             }
         }
+        // setUpComboBoxes(0);
 
-        setUpComboBoxes();
+    }
+
+    @FXML
+    void cmbWordlistsSelectionChanged(ActionEvent event) {
+        int topicSetIndex = cmbWordlists.getSelectionModel().getSelectedIndex();
+        System.out.println(topicSetIndex);
+        if (topicSetIndex >= 0 && topicSetIndex < User.getInstance().getTopicSets().size()) {
+            TopicSet selectedTopic = User.getInstance().getTopicSets().get(topicSetIndex);
+            updateTopicChoices(selectedTopic);
+        }
+
+
 
     }
 
@@ -86,15 +102,33 @@ public class TopicMenuController implements Initializable {
             btnBack.setText("Exit");
         }
 
-        setUpComboBoxes();
+        setUpComboBoxes(0);
     }
 
-    private void setUpComboBoxes() {
+    private void setUpComboBoxes(int init) {
         ObservableList<String> wordlists = FXCollections.observableArrayList();
         for (TopicSet t : User.getInstance().getTopicSets()) {
-            wordlists.add(t.getName());
+            wordlists.add(new File(t.getName()).getName());
         }
 
         cmbWordlists.setItems(wordlists);
+
+        if (init >= 0 && wordlists.size() > init) {
+            cmbWordlists.getSelectionModel().select(init);
+            updateTopicChoices(User.getInstance().getTopicSets().get(init));
+        }
+    }
+
+    private void updateTopicChoices(TopicSet selectedTopic) {
+        ObservableList<String> topics = FXCollections.observableArrayList();
+        for (int i = 0; i < selectedTopic.size(); ++i) {
+            topics.add(selectedTopic.atPosition(i).getName());
+        }
+
+        cmbTopicLists.setItems(topics);
+
+        if (topics.size() > 0) {
+            cmbTopicLists.getSelectionModel().select(0);
+        }
     }
 }
