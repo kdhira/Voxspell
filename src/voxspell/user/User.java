@@ -125,4 +125,9 @@ public class User implements Serializable {
     public String getName() {
         return _username;
     }
+
+    public void setTopic(int topicSetIndex, int topicIndex) {
+        setSelectedTopicSet(_wordlists.get(topicSetIndex));
+        setTopicLevel(topicIndex);
+    }
 }

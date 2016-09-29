@@ -45,7 +45,9 @@ public class TopicMenuController implements Initializable {
 
     @FXML
     void btnSubmitPressed(ActionEvent event) {
+        User.getInstance().setTopic(cmbWordlists.getSelectionModel().getSelectedIndex(), cmbTopicLists.getSelectionModel().getSelectedIndex());
 
+        SceneSwitcher.getInstance().execute(SceneType.MENU);
     }
 
     @FXML
@@ -86,7 +88,6 @@ public class TopicMenuController implements Initializable {
     @FXML
     void cmbWordlistsSelectionChanged(ActionEvent event) {
         int topicSetIndex = cmbWordlists.getSelectionModel().getSelectedIndex();
-        System.out.println(topicSetIndex);
         if (topicSetIndex >= 0 && topicSetIndex < User.getInstance().getTopicSets().size()) {
             TopicSet selectedTopic = User.getInstance().getTopicSets().get(topicSetIndex);
             updateTopicChoices(selectedTopic);

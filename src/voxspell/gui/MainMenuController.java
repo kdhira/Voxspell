@@ -80,7 +80,7 @@ public class MainMenuController implements Initializable {
     private void setTextElements() {
         lblCurrentUser.setText("User: " + User.getInstance().getName());
 
-        lblCurrentTopic.setText("Level/Topic: " + User.getInstance().getSelectedTopicSet().atPosition(User.getInstance().getTopicLevel()).getName() + " (" + User.getInstance().getTopicLevel() + ")");
+        lblCurrentTopic.setText("Level/Topic: " + User.getInstance().getSelectedTopicSet().atPosition(User.getInstance().getTopicLevel()).getName() + " (" + (User.getInstance().getTopicLevel() + 1) + ")");
     }
 
 }
