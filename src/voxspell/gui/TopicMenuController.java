@@ -81,7 +81,6 @@ public class TopicMenuController implements Initializable {
 
             }
         }
-        // setUpComboBoxes(0);
 
     }
 
@@ -101,6 +100,9 @@ public class TopicMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         if (User.getInstance().getSelectedTopicSet() == null) {
             btnBack.setText("Exit");
+        }
+        else {
+            btnBack.setText("Back");
         }
 
         setUpComboBoxes(0);
