@@ -109,6 +109,7 @@ public class TopicMenuController implements Initializable {
     }
 
     private void setUpComboBoxes(int init) {
+        btnSubmit.setDisable(true);
         ObservableList<String> wordlists = FXCollections.observableArrayList();
         for (TopicSet t : User.getInstance().getTopicSets()) {
             wordlists.add(new File(t.getName()).getName());
@@ -132,6 +133,7 @@ public class TopicMenuController implements Initializable {
 
         if (topics.size() > 0) {
             cmbTopicLists.getSelectionModel().select(0);
+            btnSubmit.setDisable(false);
         }
     }
 }
