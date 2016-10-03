@@ -45,6 +45,8 @@ public class UserMenuController implements Initializable {
     @FXML
     private ComboBox<String> cmbUsers;
 
+    private int _userIndex = 0;
+
     @FXML
     void btnLoginPressed(ActionEvent event) {
         User.switchToUser(cbxNewUser.isSelected()?txtNewUser.getText():cmbUsers.getValue());
@@ -72,7 +74,8 @@ public class UserMenuController implements Initializable {
     }
 
     @FXML
-    void cmbUsersSlectionChanged(ActionEvent event) {
+    void cmbUsersSelectionChanged(ActionEvent event) {
+        _userIndex = cmbUsers.getSelectionModel().getSelectedIndex();
         updateAbilities();
     }
 
@@ -94,13 +97,14 @@ public class UserMenuController implements Initializable {
         if (cbxNewUser.isSelected()) {
             txtNewUser.setDisable(false);
             cmbUsers.setDisable(true);
-            for (String u : cmbUsers.getItems()) {
-                if (u.equals(txtNewUser.getText())) {
-
+            for (int i = 0; i < cmbUsers.getItems().size(); ++i) {
+                if (cmbUsers.getItems().get(i).equals(txtNewUser.getText())) {
+                    cmbUsers.getSelectionModel().select(i);
                     btnLogin.setDisable(true);
                     return;
                 }
             }
+            cmbUsers.getSelectionModel().select(_userIndex);
             btnLogin.setDisable(txtNewUser.getText().equals(""));
         }
         else {
@@ -124,6 +128,7 @@ public class UserMenuController implements Initializable {
 
         if (users.size() > 0) {
             cmbUsers.getSelectionModel().select(0);
+            _userIndex = 0;
         }
     }
 }
