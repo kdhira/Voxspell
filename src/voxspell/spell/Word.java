@@ -7,6 +7,7 @@ public class Word implements Serializable {
     private Integer _mastered;
     private Integer _faulted;
     private Integer _failed;
+    private boolean _isReview;
 
     public Word(String wordName) {
         _name = wordName;
@@ -25,6 +26,10 @@ public class Word implements Serializable {
 
     public int getFailed() {
         return _failed;
+    }
+
+    public boolean isReview() {
+        return _isReview;
     }
 
     public String toString() {
