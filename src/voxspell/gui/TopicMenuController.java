@@ -38,10 +38,10 @@ public class TopicMenuController implements Initializable {
     private Button btnImport;
 
     @FXML
-    private ComboBox cmbWordlists;
+    private ComboBox<String> cmbWordlists;
 
     @FXML
-    private ComboBox cmbTopicLists;
+    private ComboBox<String> cmbTopicLists;
 
     @FXML
     void btnSubmitPressed(ActionEvent event) {
