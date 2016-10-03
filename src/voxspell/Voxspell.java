@@ -19,7 +19,7 @@ public class Voxspell extends Application {
         _stage = stage;
 
         // Set the title and closeRequest.
-        stage.setTitle("Voxspell - Kevin Hira");
+        stage.setTitle("VOXSPELL - Spelling Aid");
         // stage.setOnCloseRequest(e -> stop());
 
         // Switch to the main menu and show.

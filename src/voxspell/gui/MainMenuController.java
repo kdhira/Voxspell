@@ -19,10 +19,10 @@ public class MainMenuController implements Initializable {
     private Label lblAuthor;
 
     @FXML
-    private Button btnNewTest;
+    private Button btnNewQuiz;
 
     @FXML
-    private Button btnReviewTest;
+    private Button btnReviewQuiz;
 
     @FXML
     private Button btnViewStatistics;
@@ -63,7 +63,7 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void btnNewTestPressed(ActionEvent event) {
+    void btnNewQuizPressed(ActionEvent event) {
         SceneSwitcher.getInstance().execute(SceneType.NEW_QUIZ);
     }
 
