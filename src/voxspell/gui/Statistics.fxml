@@ -5,7 +5,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.StatisticsController">
    <children>
       <Label fx:id="lblTitle" layoutX="152.0" layoutY="24.0" text="Statistics">
@@ -13,12 +12,12 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TableView layoutX="30.0" layoutY="100.0" prefHeight="200.0" prefWidth="340.0">
+      <TableView fx:id="tblStatistics" layoutX="30.0" layoutY="100.0" prefHeight="200.0" prefWidth="340.0">
         <columns>
-          <TableColumn prefWidth="85.0" text="Word" />
-          <TableColumn prefWidth="85.0" text="Mastered" />
-            <TableColumn prefWidth="85.0" text="Faulted" />
-            <TableColumn prefWidth="85.0" text="Failed" />
+          <TableColumn fx:id="tclName" prefWidth="85.0" text="Word" />
+          <TableColumn fx:id="tclMastered" prefWidth="85.0" text="Mastered" />
+            <TableColumn fx:id="tclFaulted" prefWidth="85.0" text="Faulted" />
+            <TableColumn fx:id="tclFailed" prefWidth="85.0" text="Failed" />
         </columns>
       </TableView>
       <Button fx:id="btnMenu" layoutX="149.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
