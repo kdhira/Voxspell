@@ -35,12 +35,12 @@ public class SceneSwitcher {
                 return tryRetrieve("UserMenu.fxml");
             case TOPIC_MENU:
                 return tryRetrieve("TopicMenu.fxml");
-            case MENU:
-                return tryRetrieve("MainMenu.fxml");
             default:
                 System.err.println("Not implemented.");
+            case MENU:
+                return tryRetrieve("MainMenu.fxml");
         }
-        return null;
+        // return null;
     }
 
     private Parent tryRetrieve(String fxml) {
