@@ -102,11 +102,7 @@ public class SpellingTestController implements Initializable {
         tflResults.getChildren().add(currentOut = new Text());
         currentOut.setText("Spell: " + _quiz.currentWord() + "\n");
 
-        Platform.runLater(new Runnable() {
-            public void run() {
-                txtResponse.requestFocus();
-            }
-        });
+        Platform.runLater(() -> txtResponse.requestFocus());
 
 
     }
