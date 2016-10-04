@@ -61,11 +61,6 @@ public class MainMenuController implements Initializable {
     @FXML
     void btnViewStatisticsPressed(ActionEvent event) {
         SceneSwitcher.getInstance().execute(SceneType.VIEW_STATISTICS);
-
-        Topic targetTopic = User.getInstance().targetTopic();
-        for (String stat : targetTopic.rawStats()) {
-            System.out.println(stat);
-        }
     }
 
     @FXML
@@ -86,7 +81,7 @@ public class MainMenuController implements Initializable {
     private void setTextElements() {
         lblCurrentUser.setText("User: " + User.getInstance().getName());
 
-        lblCurrentTopic.setText("Level/Topic: " + User.getInstance().getSelectedTopicSet().atPosition(User.getInstance().getTopicLevel()).getName() + " (" + (User.getInstance().getTopicLevel() + 1) + ")");
+        lblCurrentTopic.setText("Level/Topic: " + User.getInstance().targetTopic().getName() + " (" + (User.getInstance().getTopicLevel() + 1) + ")");
     }
 
 }
