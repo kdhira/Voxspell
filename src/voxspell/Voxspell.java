@@ -19,8 +19,7 @@ public class Voxspell extends Application {
         _stage = stage;
 
         // Set the title and closeRequest.
-        stage.setTitle("VOXSPELL - Spelling Aid");
-        // stage.setOnCloseRequest(e -> stop());
+        stage.setTitle("Voxspell - Spelling Aid");
 
         // Switch to the main menu and show.
         SceneSwitcher.getInstance().execute(SceneType.USER_MENU);
