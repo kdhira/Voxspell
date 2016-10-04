@@ -30,18 +30,16 @@ public class Quiz {
         _results = new LinkedList<SpellResult>();
 
         _quizWords = _topic.getQuizWords(10, _isReview);
-        _isFinised = numberWords() > 0;
+        _isFinised = numberWords() <= 0;
     }
 
     public QuizFlag doWork(String query) {
         if (_isFinised) {
-            return QuizFlag.QUIZ_DONE;
+            return QuizFlag.ALREADY_DONE;
         }
 
         if (checkWord(query)) {
             // Correct attempt.
-
-
             // Get next word.
             if (!nextWord()) {
                 return QuizFlag.QUIZ_DONE;
@@ -49,7 +47,7 @@ public class Quiz {
 
             return QuizFlag.NEW_WORD;
         }
-        else if (++_wordFlag >= 2){
+        else if (++_wordFlag >= 2) {
             if (!nextWord()) {
                 return QuizFlag.QUIZ_DONE;
             }
@@ -68,18 +66,38 @@ public class Quiz {
         return _quizWords.size();
     }
 
+    public int currentIndex() {
+        return _wordIndex;
+    }
+
+    public String currentWord() {
+        return _quizWords.get(_wordIndex).toString();
+    }
+
+    public LinkedList<SpellResult> getResults() {
+        return _results;
+    }
+
     private boolean checkWord(String word) {
         return _quizWords.get(_wordIndex).toString().toLowerCase().equals(word.toLowerCase());
     }
 
     private boolean nextWord() {
-        _quizWords.get(_wordIndex).logStatistic(WordResult.parse(_wordFlag));
-        _results.addLast(new SpellResult(_quizWords.get(_wordIndex).toString(), WordResult.parse(_wordFlag)));
+        // _quizWords.get(_wordIndex).logStatistic(WordResult.parse(_wordFlag));
+        _results.addLast(new SpellResult(currentWord(), WordResult.parse(_wordFlag)));
         _wordFlag = 0;
         if (++_wordIndex >= numberWords()) {
             _isFinised = true;
             return false;
         }
         return true;
+    }
+
+    public void logStatistics() {
+        if (_quizWords.size() == _results.size()) {
+            for (int i = 0; i < _quizWords.size(); ++i) {
+                _quizWords.get(i).logStatistic(_results.get(i).getResult());
+            }
+        }
     }
 }

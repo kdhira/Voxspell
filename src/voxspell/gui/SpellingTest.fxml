@@ -6,7 +6,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.SpellingTestController">
    <children>
       <Button fx:id="btnMenu" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
@@ -15,10 +14,10 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="lblLevel" layoutX="177.0" layoutY="42.0" text="Level: 1" />
+      <Label fx:id="lblLevel" alignment="CENTER" layoutX="179.0" layoutY="42.0" text="{None}" textAlignment="CENTER" />
       <VBox alignment="TOP_CENTER" layoutX="76.0" layoutY="80.0" prefHeight="270.0" prefWidth="250.0">
          <children>
-            <TextField fx:id="txtResponse">
+            <TextField fx:id="txtResponse" onAction="#btnSubmitPressed">
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>

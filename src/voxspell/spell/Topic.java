@@ -29,6 +29,25 @@ public class Topic implements Serializable {
         }
     }
 
+    public Map<String, Word> getWords() {
+        return _topicWords;
+    }
+
+    public List<String> rawStats() {
+        List<String> stats = new ArrayList<String>();
+        for (String word : _topicWords.keySet()) {
+            String stat = "";
+            stat += _topicWords.get(word).getMastered() + "\t";
+            stat += _topicWords.get(word).getFaulted() + "\t";
+            stat += _topicWords.get(word).getFailed() + "\t";
+            stat += word;
+
+            stats.add(stat);
+        }
+
+        return stats;
+    }
+
     public String getName() {
         return _name;
     }

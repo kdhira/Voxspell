@@ -1,6 +1,7 @@
 package voxspell.gui;
 
 import voxspell.user.User;
+import voxspell.spell.Topic;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,6 +61,11 @@ public class MainMenuController implements Initializable {
     @FXML
     void btnViewStatisticsPressed(ActionEvent event) {
         SceneSwitcher.getInstance().execute(SceneType.VIEW_STATISTICS);
+
+        Topic targetTopic = User.getInstance().targetTopic();
+        for (String stat : targetTopic.rawStats()) {
+            System.out.println(stat);
+        }
     }
 
     @FXML

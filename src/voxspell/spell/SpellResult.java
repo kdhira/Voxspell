@@ -8,4 +8,12 @@ public class SpellResult {
         _name = name;
         _result = wordFlag;
     }
+
+    public String getName() {
+        return _name;
+    }
+
+    public WordResult getResult() {
+        return _result;
+    }
 }

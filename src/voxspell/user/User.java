@@ -1,5 +1,6 @@
 package voxspell.user;
 
+import voxspell.spell.Topic;
 import voxspell.spell.TopicSet;
 
 import java.io.Serializable;
@@ -120,6 +121,10 @@ public class User implements Serializable {
 
     public void setTopicLevel(int p) {
         _topicPointer = p;
+    }
+
+    public Topic targetTopic() {
+        return getSelectedTopicSet().atPosition(getTopicLevel());
     }
 
     public String getName() {
