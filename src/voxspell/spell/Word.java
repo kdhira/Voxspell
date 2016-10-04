@@ -3,7 +3,7 @@ package voxspell.spell;
 import java.io.Serializable;
 
 public class Word implements Serializable {
-    private String _name;
+    private final String _name;
     private Integer _mastered;
     private Integer _faulted;
     private Integer _failed;
@@ -14,6 +14,7 @@ public class Word implements Serializable {
         _mastered = 0;
         _faulted = 0;
         _failed = 0;
+        _isReview = false;
     }
 
     public int getMastered() {
@@ -28,12 +29,16 @@ public class Word implements Serializable {
         return _failed;
     }
 
+    public String getName() {
+        return _name;
+    }
+
     public boolean isReview() {
         return _isReview;
     }
 
     public String toString() {
-        return _name;
+        return getName();
     }
 
     public void logStatistic(WordResult result) {
