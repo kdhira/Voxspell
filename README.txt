@@ -5,4 +5,4 @@ To execute Voxspell, first ensure your working directory is in this directory (i
 
 Now type the following command into Terminal:
 
-    java -jar dist/Voxspell.jar
+    java -jar Voxspell.jar
