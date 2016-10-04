@@ -69,8 +69,8 @@ public class UserMenuController implements Initializable {
     }
 
     @FXML
-    void txtNewUserTextChanged(ActionEvent event) {
-        updateAbilities();
+    void txtNewUserEnterPressed(ActionEvent event) {
+        btnLogin.fire();
     }
 
     @FXML
@@ -129,6 +129,9 @@ public class UserMenuController implements Initializable {
         if (users.size() > 0) {
             cmbUsers.getSelectionModel().select(0);
             _userIndex = 0;
+        }
+        else {
+            cbxNewUser.setSelected(true);
         }
     }
 }

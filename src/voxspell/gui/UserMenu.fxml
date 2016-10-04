@@ -20,7 +20,7 @@
       <Button fx:id="btnExit" layoutX="238.0" layoutY="226.0" mnemonicParsing="false" onAction="#btnExitPressed" prefWidth="55.0" text="Exit" />
       <Button fx:id="btnLogin" layoutX="94.0" layoutY="226.0" mnemonicParsing="false" onAction="#btnLoginPressed" prefWidth="55.0" text="Login" />
       <CheckBox fx:id="cbxNewUser" layoutX="94.0" layoutY="186.0" mnemonicParsing="false" onAction="#cbxNewUserSelectedChanged" text="New User:" />
-      <TextField fx:id="txtNewUser" layoutX="192.0" layoutY="181.0" onAction="#txtNewUserTextChanged" prefHeight="27.0" prefWidth="101.0" />
+      <TextField fx:id="txtNewUser" layoutX="192.0" layoutY="181.0" onAction="#txtNewUserEnterPressed" prefHeight="27.0" prefWidth="101.0" />
       <ComboBox fx:id="cmbUsers" layoutX="94.0" layoutY="148.0" onAction="#cmbUsersSelectionChanged" prefHeight="27.0" prefWidth="199.0" />
    </children>
 </AnchorPane>
