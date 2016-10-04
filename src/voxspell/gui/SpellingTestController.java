@@ -98,7 +98,6 @@ public class SpellingTestController implements Initializable {
 
         lblLevel.setText(targetTopic.getName());
 
-        System.out.println(_quiz.currentWord());
         tflResults.getChildren().add(currentOut = new Text());
         currentOut.setText("Spell: " + _quiz.currentWord() + "\n");
 
@@ -114,13 +113,11 @@ public class SpellingTestController implements Initializable {
             case QUIZ_DONE:
                 outputResponse();
                 _quiz.logStatistics();
-                System.out.println("DONE!");
                 break;
             case NEW_WORD:
                 outputResponse();
                 tflResults.getChildren().add(currentOut = new Text());
                 currentOut.setText("Spell: " + _quiz.currentWord() + "\n");
-                System.out.println(_quiz.currentWord());
                 break;
 
         }

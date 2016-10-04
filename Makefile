@@ -13,3 +13,6 @@ test:
 
 clean:
 	rm -f saves/*
+
+publish:
+	COPYFILE_DISABLE=1 tar -czf release/Voxspell.tar.gz resources/ README.txt -C dist Voxspell.jar

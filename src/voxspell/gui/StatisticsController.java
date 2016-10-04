@@ -68,6 +68,7 @@ public class StatisticsController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         lblLevel.setText(User.getInstance().targetTopic().getName());
+        lblUser.setText("User: " + User.getInstance().getName());
         loadWords();
     }
 }

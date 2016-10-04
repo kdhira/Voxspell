@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 
+import java.io.File;
+
 public class Voxspell extends Application {
 
     private static Stage _stage;
@@ -29,6 +31,7 @@ public class Voxspell extends Application {
     }
 
     public static void main(String[] args) {
+        new File("saves/").mkdir();
         launch(args);
     }
 
