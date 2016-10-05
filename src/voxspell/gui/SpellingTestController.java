@@ -6,6 +6,7 @@ import voxspell.spell.Topic;
 import voxspell.spell.TopicSet;
 import voxspell.spell.SpellResult;
 import voxspell.user.User;
+import voxspell.festival.Festival;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -62,31 +63,45 @@ public class SpellingTestController implements Initializable {
     private Quiz _quiz;
     private LinkedList<SpellResult> _results;
 
+    private int _nCorrect;
+
     private Text currentOut;
 
     @FXML
-    void btnSubmitPressed(ActionEvent event) {
-        queryQuiz();
-        pgiWheel.setProgress(_quiz.currentIndex() / (double)_numberWords);
-        pgbProgress.setProgress(_quiz.currentIndex() / (double)_numberWords);
+    void btnReplayPressed(ActionEvent event) {
+        speakWord(1, true);
+    }
 
-        txtResponse.setText("");
+    @FXML
+    void btnSubmitPressed(ActionEvent event) {
+        if (!txtResponse.getText().equals("")) {
+            queryQuiz();
+            pgiWheel.setProgress(_nCorrect / (double)_numberWords);
+            pgbProgress.setProgress(_nCorrect / (double)_numberWords);
+            txtResponse.setText("");
+        }
+
         txtResponse.requestFocus();
     }
 
     @FXML
     void btnMenuPressed(ActionEvent event) {
+        Festival.getInstance().closeFestival();
         SceneSwitcher.getInstance().execute(SceneType.MENU);
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        _nCorrect = 0;
         _numberWords = 10;
+
+        Festival.getInstance().openFestival();
+        Festival.getInstance().changeVoice();
 
         // http://code.makery.ch/blog/javafx-2-event-handlers-and-change-listeners/
         txtResponse.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> o, String oldV, String newV) {
-                if (!newV.matches("[A-Za-z' ]*")) {
+                if (!newV.equals("") && !newV.matches("([A-z][a-z']*)( ([A-z][a-z']*)?)*")) {
                     txtResponse.setText(oldV);
                 }
             }
@@ -98,10 +113,10 @@ public class SpellingTestController implements Initializable {
 
         lblLevel.setText(targetTopic.getName());
 
-        tflResults.getChildren().add(currentOut = new Text());
-        currentOut.setText("Spell: " + _quiz.currentWord() + "\n");
+        // Say first word. (Could refactor out to startTest() or something.)
+        promptWord();
 
-        Platform.runLater(() -> txtResponse.requestFocus());
+        // Platform.runLater(() -> txtResponse.requestFocus());
 
 
     }
@@ -109,15 +124,19 @@ public class SpellingTestController implements Initializable {
     private void queryQuiz() {
         switch (_quiz.doWork(txtResponse.getText())) {
             case NO_CHANGE:
+                Festival.getInstance().speak("Try once more...");
+                speakWord(2, true);
                 break;
             case QUIZ_DONE:
                 outputResponse();
                 _quiz.logStatistics();
+                txtResponse.setDisable(true);
+                btnSubmit.setDisable(true);
+                btnReplay.setDisable(true);
                 break;
             case NEW_WORD:
                 outputResponse();
-                tflResults.getChildren().add(currentOut = new Text());
-                currentOut.setText("Spell: " + _quiz.currentWord() + "\n");
+                promptWord();
                 break;
 
         }
@@ -127,14 +146,41 @@ public class SpellingTestController implements Initializable {
         SpellResult r = _results.getLast();
         switch (r.getResult()) {
             case MASTERED:
+                Festival.getInstance().speak("Correct!");
                 currentOut.setText(r.getName() + " - Correct.\n");
+                ++_nCorrect;
                 break;
             case FAULTED:
+                Festival.getInstance().speak("Correct!");
                 currentOut.setText(r.getName() + " - Faulted.\n");
+                ++_nCorrect;
                 break;
             case FAILED:
+                Festival.getInstance().speak("Incorrect...");
                 currentOut.setText(r.getName() + " - Failed.\n");
                 break;
+        }
+    }
+
+    private void promptWord() {
+        tflResults.getChildren().add(currentOut = new Text());
+        currentOut.setText("Spell: " + _quiz.currentWord() + "\n");
+        speakWord(1, false);
+    }
+
+    private void speakWord(int quantity, boolean goSlower) {
+        if (goSlower) {
+            // TODO: Slow down festival
+            Festival.getInstance().changeStretch("2.0");
+        }
+
+        for (int i = 0; i < quantity; ++i) {
+            Festival.getInstance().speak( _quiz.currentWord());
+        }
+
+        if (goSlower) {
+            // TODO: Speed up festival to default.
+            Festival.getInstance().changeStretch("1.0");
         }
     }
 }
