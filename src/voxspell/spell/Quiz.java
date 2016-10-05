@@ -29,7 +29,7 @@ public class Quiz {
 
         _results = new LinkedList<SpellResult>();
 
-        _quizWords = _topic.getQuizWords(10, _isReview);
+        _quizWords = _topic.getQuizWords(nWords, _isReview);
         _isFinised = numberWords() <= 0;
     }
 

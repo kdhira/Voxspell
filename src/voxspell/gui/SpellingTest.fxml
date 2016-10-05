@@ -31,14 +31,18 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
             </ProgressBar>
-            <TextFlow fx:id="tflResults" maxHeight="180.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
-               <VBox.margin>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </TextFlow>
+            <ScrollPane fx:id="spnFlowScroll" fitToHeight="true" fitToWidth="true" prefViewportHeight="180.0" prefViewportWidth="246.0" style="-fx-background-color: white;">
+               <content>
+                  <TextFlow fx:id="tflResults" maxHeight="195.0" prefHeight="180.0" prefWidth="232.0" style="-fx-background-color: white;">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextFlow>
+               </content>
+            </ScrollPane>
          </children>
       </VBox>
       <Button fx:id="btnMenu" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />

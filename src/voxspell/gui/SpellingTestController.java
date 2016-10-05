@@ -21,13 +21,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
+import javafx.scene.Node;
 
 import java.util.LinkedList;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 
 public class SpellingTestController implements Initializable {
 
@@ -58,8 +61,11 @@ public class SpellingTestController implements Initializable {
     @FXML
     private TextField txtResponse;
 
-    private int _currentWord = 0;
+    @FXML
+    private ScrollPane spnFlowScroll;
+
     private int _numberWords;
+    private String _prompt;
     private Quiz _quiz;
     private LinkedList<SpellResult> _results;
 
@@ -77,8 +83,8 @@ public class SpellingTestController implements Initializable {
     void btnSubmitPressed(ActionEvent event) {
         if (!txtResponse.getText().equals("")) {
             queryQuiz();
-            pgiWheel.setProgress(_nCorrect / (double)_numberWords);
-            pgbProgress.setProgress(_nCorrect / (double)_numberWords);
+            pgiWheel.setProgress(_quiz.currentIndex() / (double)_numberWords);
+            pgbProgress.setProgress(_nCorrect / (double)_quiz.currentIndex());
             txtResponse.setText("");
         }
 
@@ -97,7 +103,6 @@ public class SpellingTestController implements Initializable {
         _numberWords = 10;
 
         Festival.getInstance().openFestival();
-        Festival.getInstance().changeVoice();
 
         // http://code.makery.ch/blog/javafx-2-event-handlers-and-change-listeners/
         txtResponse.textProperty().addListener(new ChangeListener<String>() {
@@ -108,25 +113,29 @@ public class SpellingTestController implements Initializable {
             }
         });
 
+        tflResults.getChildren().addListener(new ListChangeListener<Node>() {
+            public void onChanged(ListChangeListener.Change<? extends Node> c) {
+                scrollToBottom();
+            }
+        });
+
         Topic targetTopic = User.getInstance().targetTopic();
         _quiz = new Quiz(targetTopic, _numberWords, false);
         _results = _quiz.getResults();
+        _numberWords = _quiz.numberWords();
 
         lblLevel.setText(targetTopic.getName());
 
-        // Say first word. (Could refactor out to startTest() or something.)
+        // Say first word.
         promptWord();
-
-        // Platform.runLater(() -> txtResponse.requestFocus());
-
-
     }
 
     private void queryQuiz() {
         switch (_quiz.doWork(txtResponse.getText())) {
             case NO_CHANGE:
                 Festival.getInstance().speak("Try once more...");
-                speakWord(2, true);
+                speakWord(1, false);
+                speakWord(1, true);
                 break;
             case QUIZ_DONE:
                 outputResponse();
@@ -148,30 +157,30 @@ public class SpellingTestController implements Initializable {
         switch (r.getResult()) {
             case MASTERED:
                 Festival.getInstance().speak("Correct!");
-                currentOut.setText(r.getName() + " - Correct.\n");
+                currentOut.setText(_prompt + " Correct (" + r.getName() + ").\n");
                 ++_nCorrect;
                 break;
             case FAULTED:
                 Festival.getInstance().speak("Correct!");
-                currentOut.setText(r.getName() + " - Faulted.\n");
+                currentOut.setText(_prompt + " Faulted (" + r.getName() + ").\n");
                 ++_nCorrect;
                 break;
             case FAILED:
                 Festival.getInstance().speak("Incorrect...");
-                currentOut.setText(r.getName() + " - Failed.\n");
+                currentOut.setText(_prompt + " Failed (" + r.getName() + ").\n");
                 break;
         }
     }
 
     private void promptWord() {
-        tflResults.getChildren().add(currentOut = new Text());
-        currentOut.setText("Spell: " + _quiz.currentWord() + "\n");
+        tflResults.getChildren().add(0, currentOut = new Text());
+        _prompt = "Spell word " + (_quiz.currentIndex()+1) + "/" + _numberWords + ":";
+        currentOut.setText(_prompt + "\n");
         speakWord(1, false);
     }
 
     private void speakWord(int quantity, boolean goSlower) {
         if (goSlower) {
-            // TODO: Slow down festival
             Festival.getInstance().changeStretch("2.0");
         }
 
@@ -180,8 +189,19 @@ public class SpellingTestController implements Initializable {
         }
 
         if (goSlower) {
-            // TODO: Speed up festival to default.
             Festival.getInstance().changeStretch("1.0");
         }
+    }
+
+    // http://stackoverflow.com/questions/12837592/how-to-scroll-to-make-a-node-within-the-content-of-a-scrollpane-visible
+    private void scrollToBottom() {
+        double w = spnFlowScroll.getContent().getBoundsInLocal().getWidth();
+        double h = spnFlowScroll.getContent().getBoundsInLocal().getHeight();
+
+        double x = currentOut.getBoundsInParent().getMaxX();
+        double y = currentOut.getBoundsInParent().getMaxY();
+
+        spnFlowScroll.setHvalue(x/w);
+        spnFlowScroll.setVvalue(y/h);
     }
 }
