@@ -37,7 +37,7 @@
             </Button>
             <BorderPane prefHeight="27.0" prefWidth="135.0">
                <right>
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" text="Settings" BorderPane.alignment="CENTER">
+                  <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#btnSettingsPressed" prefHeight="27.0" prefWidth="80.0" text="Settings" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets top="2.0" />
                      </BorderPane.margin>

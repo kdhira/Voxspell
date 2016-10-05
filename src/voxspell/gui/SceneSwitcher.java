@@ -31,6 +31,8 @@ public class SceneSwitcher {
                 return tryRetrieve("SpellingTest.fxml");
             case VIEW_STATISTICS:
                 return tryRetrieve("Statistics.fxml");
+            case SETTINGS:
+                return tryRetrieve("Settings.fxml");
             case USER_MENU:
                 return tryRetrieve("UserMenu.fxml");
             case TOPIC_MENU:
