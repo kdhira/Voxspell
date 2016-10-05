@@ -70,6 +70,7 @@ public class SpellingTestController implements Initializable {
     @FXML
     void btnReplayPressed(ActionEvent event) {
         speakWord(1, true);
+        txtResponse.requestFocus();
     }
 
     @FXML
