@@ -177,6 +177,7 @@ public class Festival {
         closeFestival();
         _festivalService = new FestivalWorker();
         System.out.println("Festival subprocess spawned.");
+        changeVoice();
     }
 
 
