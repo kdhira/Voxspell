@@ -8,13 +8,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.SpellingTestController">
    <children>
-      <Button fx:id="btnMenu" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
-      <Label fx:id="lblTitle" layoutX="106.0" layoutY="14.0" text="New Spelling Test">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblLevel" alignment="CENTER" layoutX="179.0" layoutY="42.0" text="{None}" textAlignment="CENTER" />
       <VBox alignment="TOP_CENTER" layoutX="76.0" layoutY="80.0" prefHeight="270.0" prefWidth="250.0">
          <children>
             <TextField fx:id="txtResponse" onAction="#btnSubmitPressed">
@@ -23,12 +16,12 @@
                </VBox.margin>
             </TextField>
             <BorderPane prefHeight="4.0" prefWidth="262.0">
+                <left>
+                   <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#btnSubmitPressed" text="Submit Answer" BorderPane.alignment="CENTER" />
+                </left>
                <right>
-                  <Button fx:id="btnReplay" mnemonicParsing="false" text="Replay Word" BorderPane.alignment="CENTER" />
+                  <Button fx:id="btnReplay" mnemonicParsing="false" onAction="#btnReplayPressed" text="Replay Word" BorderPane.alignment="CENTER" />
                </right>
-               <left>
-                  <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#btnSubmitPressed" text="Submit Answer" BorderPane.alignment="CENTER" />
-               </left>
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
@@ -48,6 +41,13 @@
             </TextFlow>
          </children>
       </VBox>
+      <Button fx:id="btnMenu" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
       <ProgressIndicator fx:id="pgiWheel" layoutX="353.0" layoutY="341.0" progress="0.0" />
+      <Label fx:id="lblTitle" layoutX="106.0" layoutY="14.0" text="New Spelling Test">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLevel" alignment="CENTER" layoutX="179.0" layoutY="42.0" text="{None}" textAlignment="CENTER" />
    </children>
 </AnchorPane>

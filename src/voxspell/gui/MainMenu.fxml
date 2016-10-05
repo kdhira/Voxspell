@@ -36,16 +36,6 @@
                </tooltip>
             </Button>
             <BorderPane prefHeight="27.0" prefWidth="135.0">
-               <right>
-                  <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#btnSettingsPressed" prefHeight="27.0" prefWidth="80.0" text="Settings" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets top="2.0" />
-                     </BorderPane.margin>
-                     <tooltip>
-                        <Tooltip text="Change the settings of Voxspell." />
-                     </tooltip>
-                  </Button>
-               </right>
                <left>
                   <Button fx:id="btnViewStatistics" mnemonicParsing="false" onAction="#btnViewStatisticsPressed" prefHeight="27.0" prefWidth="110.0" text="View Statistics" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
@@ -56,6 +46,16 @@
                      </tooltip>
                   </Button>
                </left>
+               <right>
+                  <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#btnSettingsPressed" prefHeight="27.0" prefWidth="80.0" text="Settings" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="2.0" />
+                     </BorderPane.margin>
+                     <tooltip>
+                        <Tooltip text="Change the settings of Voxspell." />
+                     </tooltip>
+                  </Button>
+               </right>
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
@@ -76,7 +76,7 @@
             <Label fx:id="lblCurrentTopic" alignment="CENTER" text="Level/Topic: {None}" />
          </children>
       </VBox>
-      <Button fx:id="btnChangeUser" layoutX="288.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeUserPressed" text="User Select" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
       <Button fx:id="btnChangeLevel" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeLevelPressed" text="Level Select" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnChangeUser" layoutX="288.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeUserPressed" text="User Select" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>
