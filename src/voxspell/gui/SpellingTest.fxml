@@ -43,7 +43,7 @@
       </VBox>
       <Button fx:id="btnMenu" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
       <ProgressIndicator fx:id="pgiWheel" layoutX="353.0" layoutY="341.0" progress="0.0" />
-      <Label fx:id="lblTitle" layoutX="106.0" layoutY="14.0" text="New Spelling Test">
+      <Label fx:id="lblTitle" layoutX="106.0" layoutY="14.0" text="New Spelling Quiz">
          <font>
             <Font size="22.0" />
          </font>
