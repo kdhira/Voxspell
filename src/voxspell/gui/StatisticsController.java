@@ -2,6 +2,7 @@ package voxspell.gui;
 
 import voxspell.user.User;
 import voxspell.spell.Word;
+import voxspell.spell.TopicSet;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,9 +17,13 @@ import javafx.application.Platform;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class StatisticsController implements Initializable {
     @FXML
@@ -48,16 +53,12 @@ public class StatisticsController implements Initializable {
     @FXML
     private TableColumn<Word, Integer> tclFailed;
 
-    private void loadWords() {
-        ObservableList<Word> words = FXCollections.observableArrayList();
-        for (Word w : User.getInstance().targetTopic().getWords()) {
-            words.add(w);
-        }
-        tblStatistics.setItems(words);
-        tclName.setCellValueFactory(new PropertyValueFactory<Word, String>("name"));
-        tclMastered.setCellValueFactory(new PropertyValueFactory<Word, Integer>("mastered"));
-        tclFaulted.setCellValueFactory(new PropertyValueFactory<Word, Integer>("faulted"));
-        tclFailed.setCellValueFactory(new PropertyValueFactory<Word, Integer>("failed"));
+    @FXML
+    private ComboBox<String> cmbTopics;
+
+    @FXML
+    void cmbTopicSelectionChanged(ActionEvent event) {
+        loadWords();
     }
 
     @FXML
@@ -67,8 +68,35 @@ public class StatisticsController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        lblLevel.setText(User.getInstance().targetTopic().getName());
         lblUser.setText("User: " + User.getInstance().getName());
+        loadTopics();
         loadWords();
+    }
+
+    private void loadWords() {
+        int index = cmbTopics.getSelectionModel().getSelectedIndex();
+
+        lblLevel.setText(User.getInstance().getSelectedTopicSet().atPosition(index).getName());
+
+        ObservableList<Word> words = FXCollections.observableArrayList();
+        for (Word w : User.getInstance().getSelectedTopicSet().atPosition(index).getWords()) {
+            words.add(w);
+        }
+        tblStatistics.setItems(words);
+        tclName.setCellValueFactory(new PropertyValueFactory<Word, String>("name"));
+        tclMastered.setCellValueFactory(new PropertyValueFactory<Word, Integer>("mastered"));
+        tclFaulted.setCellValueFactory(new PropertyValueFactory<Word, Integer>("faulted"));
+        tclFailed.setCellValueFactory(new PropertyValueFactory<Word, Integer>("failed"));
+    }
+
+    private void loadTopics() {
+        TopicSet selectedTopic = User.getInstance().getSelectedTopicSet();
+        ObservableList<String> topics = FXCollections.observableArrayList();
+        for (int i = 0; i < selectedTopic.size(); ++i) {
+            topics.add(selectedTopic.atPosition(i).getName());
+        }
+
+        cmbTopics.setItems(topics);
+        cmbTopics.getSelectionModel().select(User.getInstance().getTopicLevel());
     }
 }

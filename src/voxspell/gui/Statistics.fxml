@@ -27,5 +27,6 @@
             <Label fx:id="lblLevel" text="Level: 1" />
          </children>
       </VBox>
+      <ComboBox fx:id="cmbTopics" layoutX="125.0" layoutY="325.0" onAction="#cmbTopicSelectionChanged" prefWidth="150.0" />
    </children>
 </AnchorPane>
