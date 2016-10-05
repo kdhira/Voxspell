@@ -115,7 +115,7 @@ public class SpellingTestController implements Initializable {
 
         tflResults.getChildren().addListener(new ListChangeListener<Node>() {
             public void onChanged(ListChangeListener.Change<? extends Node> c) {
-                scrollToBottom();
+                scrollToTop();
             }
         });
 
@@ -148,7 +148,6 @@ public class SpellingTestController implements Initializable {
                 outputResponse();
                 promptWord();
                 break;
-
         }
     }
 
@@ -180,28 +179,24 @@ public class SpellingTestController implements Initializable {
     }
 
     private void speakWord(int quantity, boolean goSlower) {
+        boolean shortWord = _quiz.currentWord().length() <= 4;
         if (goSlower) {
-            Festival.getInstance().changeStretch("2.0");
+            Festival.getInstance().changeStretch(shortWord ? "2.5" : "2.0");
+        }
+        else if (shortWord) {
+            Festival.getInstance().changeStretch("1.25");
         }
 
         for (int i = 0; i < quantity; ++i) {
             Festival.getInstance().speak( _quiz.currentWord());
         }
 
-        if (goSlower) {
+        if (goSlower || shortWord) {
             Festival.getInstance().changeStretch("1.0");
         }
     }
 
-    // http://stackoverflow.com/questions/12837592/how-to-scroll-to-make-a-node-within-the-content-of-a-scrollpane-visible
-    private void scrollToBottom() {
-        double w = spnFlowScroll.getContent().getBoundsInLocal().getWidth();
-        double h = spnFlowScroll.getContent().getBoundsInLocal().getHeight();
-
-        double x = currentOut.getBoundsInParent().getMaxX();
-        double y = currentOut.getBoundsInParent().getMaxY();
-
-        spnFlowScroll.setHvalue(x/w);
-        spnFlowScroll.setVvalue(y/h);
+    private void scrollToTop() {
+        spnFlowScroll.setVvalue(0.00f);
     }
 }
