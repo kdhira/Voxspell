@@ -145,6 +145,10 @@ public class Festival {
         _currentVoice = voice;
     }
 
+    public String getCurrentVoice() {
+        return _currentVoice;
+    }
+
     public void changeStretch(String stretch) {
         System.out.println("(Parameter.set 'Duration_Stretch " + stretch + ")");
         _festivalService.setText("(Parameter.set 'Duration_Stretch " + stretch + ")");

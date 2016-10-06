@@ -5,7 +5,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.SettingsController">
    <children>
       <Label fx:id="lblTitle" alignment="CENTER" layoutX="157.0" layoutY="14.0" text="Settings">
@@ -14,5 +13,6 @@
          </font>
       </Label>
       <Button fx:id="btnMenu" layoutX="149.0" layoutY="347.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
+      <ComboBox fx:id="cmbFestival" layoutX="14.0" layoutY="63.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0" />
    </children>
 </AnchorPane>
