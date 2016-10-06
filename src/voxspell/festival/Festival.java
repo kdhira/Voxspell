@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package voxspell.festival;
+
+import voxspell.user.User;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -28,7 +25,7 @@ public class Festival {
     private FestivalWorker _festivalService;
 
     private Map<String, String> _festivalVoices;
-    private String _currentVoice;
+    // private String _currentVoice;
 
     /**
      * The Festival constructor sets up a new Service that handles the background
@@ -41,8 +38,6 @@ public class Festival {
         _festivalVoices = new HashMap<String, String>();
         _festivalVoices.put("American", "voice_kal_diphone");
         _festivalVoices.put("New Zealand", "voice_akl_nz_jdt_diphone");
-
-        _currentVoice = "American";
     }
 
     /**
@@ -132,21 +127,10 @@ public class Festival {
      * Wraps voice text into scheme and sends it to the FestivalWorker.
      */
     public void changeVoice() {
-        System.out.println("("+_festivalVoices.get(_currentVoice)+")");
-        _festivalService.setText("("+_festivalVoices.get(_currentVoice)+")");
+        String voice = User.getInstance().getFestivalVoice();
+        System.out.println("(" + _festivalVoices.get(voice) + ")");
+        _festivalService.setText("(" + _festivalVoices.get(voice) + ")");
         new Thread(_festivalService.createTask()).start();
-    }
-
-    public void setVoice(String voice) {
-        if (!_festivalVoices.containsKey(voice)) {
-            System.err.println(voice + " not a voice.");
-            return;
-        }
-        _currentVoice = voice;
-    }
-
-    public String getCurrentVoice() {
-        return _currentVoice;
     }
 
     public void changeStretch(String stretch) {

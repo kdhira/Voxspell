@@ -2,6 +2,7 @@ package voxspell.user;
 
 import voxspell.spell.Topic;
 import voxspell.spell.TopicSet;
+import voxspell.festival.Festival;
 
 import java.io.Serializable;
 
@@ -27,12 +28,18 @@ public class User implements Serializable {
     private TopicSet _targetWordlist;
     private Integer _topicPointer;
 
+    private Integer _wordsPerQuiz;
+    private String _festivalVoice;
+
     private User(String name) {
         _username = name;
         _saveLocation = SAVE_DIRECTORY + name;
         _wordlists = new ArrayList<TopicSet>();
         _targetWordlist = null;
         _topicPointer = -1;
+
+        _wordsPerQuiz = 10;
+        _festivalVoice = "American"; //Change to a default value, not hardcode.
     }
 
     public static User getInstance() {
@@ -134,5 +141,26 @@ public class User implements Serializable {
     public void setTopic(int topicSetIndex, int topicIndex) {
         setSelectedTopicSet(_wordlists.get(topicSetIndex));
         setTopicLevel(topicIndex);
+    }
+
+    public int getWordsPerQuiz() {
+        return _wordsPerQuiz;
+    }
+
+    public void setWordsPerQuiz(int wordsPerQuiz) {
+        _wordsPerQuiz = wordsPerQuiz;
+    }
+
+    public String getFestivalVoice() {
+        return _festivalVoice;
+    }
+
+    public void setFestivalVoice(String voice) {
+        if (!Festival.getInstance().getVoices().containsKey(voice)) {
+            System.err.println(voice + " not a voice.");
+            return;
+        }
+
+        _festivalVoice = voice;
     }
 }

@@ -13,6 +13,9 @@
          </font>
       </Label>
       <Button fx:id="btnMenu" layoutX="149.0" layoutY="347.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
-      <ComboBox fx:id="cmbFestival" layoutX="14.0" layoutY="63.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0" />
+      <ComboBox fx:id="cmbFestival" layoutX="16.0" layoutY="81.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0" />
+      <Label layoutX="16.0" layoutY="64.0" text="Festival Voice:" />
+      <Label layoutX="16.0" layoutY="125.0" text="Words per Quiz" />
+      <TextField fx:id="txtWordsPerQuiz" layoutX="14.0" layoutY="142.0" prefHeight="27.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

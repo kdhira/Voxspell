@@ -100,7 +100,7 @@ public class SpellingTestController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         _nCorrect = 0;
-        _numberWords = 10;
+        _numberWords = User.getInstance().getWordsPerQuiz();
 
         Festival.getInstance().openFestival();
 

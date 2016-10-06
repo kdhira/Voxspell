@@ -11,8 +11,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.ComboBox;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,8 +32,11 @@ public class SettingsController implements Initializable {
     private ComboBox<String> cmbFestival;
 
     @FXML
+    private TextField txtWordsPerQuiz;
+
+    @FXML
     void cmbFestivalSelectionChanged(ActionEvent event) {
-        Festival.getInstance().setVoice(cmbFestival.getValue());
+        User.getInstance().setFestivalVoice(cmbFestival.getValue());
     }
 
     @FXML
@@ -39,6 +46,24 @@ public class SettingsController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        cmbFestivalSetUp();
+        txtWordsPerQuizSetUp();
+
+        // http://code.makery.ch/blog/javafx-2-event-handlers-and-change-listeners/
+        txtWordsPerQuiz.textProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> o, String oldV, String newV) {
+                if (!newV.equals("") && !newV.matches("[0-9]*")) {
+                    txtWordsPerQuiz.setText(oldV);
+                }
+                else if (!newV.equals("")) {
+                    User.getInstance().setWordsPerQuiz(Integer.parseInt(txtWordsPerQuiz.getText()));
+                }
+            }
+        });
+
+    }
+
+    private void cmbFestivalSetUp() {
         ObservableList<String> voices = FXCollections.observableArrayList();
 
         for (String v : Festival.getInstance().getVoices().keySet()) {
@@ -46,8 +71,11 @@ public class SettingsController implements Initializable {
         }
 
         cmbFestival.setItems(voices);
-        cmbFestival.getSelectionModel().select(Festival.getInstance().getCurrentVoice());
+        cmbFestival.getSelectionModel().select(User.getInstance().getFestivalVoice());
+    }
 
+    private void txtWordsPerQuizSetUp() {
+        txtWordsPerQuiz.setText(User.getInstance().getWordsPerQuiz() + "");
     }
 
 }
