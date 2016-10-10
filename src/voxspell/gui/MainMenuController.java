@@ -2,6 +2,7 @@ package voxspell.gui;
 
 import voxspell.user.User;
 import voxspell.spell.Topic;
+import voxspell.spell.TopicSet;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,10 @@ import javafx.application.Platform;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class MainMenuController implements Initializable {
 
@@ -23,7 +28,7 @@ public class MainMenuController implements Initializable {
     private Button btnNewQuiz;
 
     @FXML
-    private Button btnReviewQuiz;
+    private ComboBox<String> cmbTopics;
 
     @FXML
     private Button btnViewStatistics;
@@ -33,9 +38,6 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private Label lblCurrentUser;
-
-    @FXML
-    private Label lblCurrentTopic;
 
     @FXML
     private Button btnExit;
@@ -48,6 +50,11 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private Button btnSettings;
+
+    @FXML
+    void cmbTopicsSelectionChanged(ActionEvent event) {
+        User.getInstance().setTopicLevel(cmbTopics.getSelectionModel().getSelectedIndex());
+    }
 
     @FXML
     void btnSettingsPressed(ActionEvent event) {
@@ -84,12 +91,22 @@ public class MainMenuController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         setTextElements();
+        loadTopics();
     }
 
     private void setTextElements() {
         lblCurrentUser.setText("User: " + User.getInstance().getName());
+    }
 
-        lblCurrentTopic.setText("Level/Topic: " + User.getInstance().targetTopic().getName() + " (" + (User.getInstance().getTopicLevel() + 1) + ")");
+    private void loadTopics() {
+        TopicSet selectedTopicSet = User.getInstance().getSelectedTopicSet();
+        ObservableList<String> topics = FXCollections.observableArrayList();
+        for (int i = 0; i < selectedTopicSet.size(); ++i) {
+            topics.add(selectedTopicSet.atPosition(i).getName());
+        }
+
+        cmbTopics.setItems(topics);
+        cmbTopics.getSelectionModel().select(User.getInstance().getTopicLevel());
     }
 
 }

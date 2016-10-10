@@ -93,10 +93,10 @@ public class StatisticsController implements Initializable {
     }
 
     private void loadTopics() {
-        TopicSet selectedTopic = User.getInstance().getSelectedTopicSet();
+        TopicSet selectedTopicSet = User.getInstance().getSelectedTopicSet();
         ObservableList<String> topics = FXCollections.observableArrayList();
-        for (int i = 0; i < selectedTopic.size(); ++i) {
-            topics.add(selectedTopic.atPosition(i).getName());
+        for (int i = 0; i < selectedTopicSet.size(); ++i) {
+            topics.add(selectedTopicSet.atPosition(i).getName());
         }
 
         cmbTopics.setItems(topics);

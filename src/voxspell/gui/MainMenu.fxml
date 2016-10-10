@@ -19,20 +19,13 @@
       </Label>
       <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="166.0" prefHeight="174.0" prefWidth="200.0">
          <children>
+            <ComboBox fx:id="cmbTopics" onAction="#cmbTopicsSelectionChanged" prefHeight="27.0" prefWidth="196.0" />
             <Button fx:id="btnNewQuiz" mnemonicParsing="false" onAction="#btnNewQuizPressed" prefHeight="20.0" prefWidth="200.0" text="New Quiz">
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
                <tooltip>
                   <Tooltip text="Start a new quiz in the current level." />
-               </tooltip>
-            </Button>
-            <Button fx:id="btnReviewQuiz" mnemonicParsing="false" prefHeight="20.0" prefWidth="200.0" text="Review Quiz">
-               <VBox.margin>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </VBox.margin>
-               <tooltip>
-                  <Tooltip text="Start a new quiz from words you've got incorrect." />
                </tooltip>
             </Button>
             <BorderPane prefHeight="27.0" prefWidth="135.0">
@@ -73,7 +66,6 @@
       <VBox alignment="CENTER" layoutX="104.0" layoutY="114.0" prefHeight="53.0" prefWidth="196.0">
          <children>
             <Label fx:id="lblCurrentUser" alignment="CENTER" text="User: {None}" />
-            <Label fx:id="lblCurrentTopic" alignment="CENTER" text="Level/Topic: {None}" />
          </children>
       </VBox>
       <Button fx:id="btnChangeLevel" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeLevelPressed" text="Level Select" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
