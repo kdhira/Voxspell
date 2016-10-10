@@ -41,6 +41,10 @@ public class Word implements Serializable {
         return getName();
     }
 
+    public boolean isClear() {
+        return _mastered == 0 && _faulted == 0 && _failed == 0;
+    }
+
     public void logStatistic(WordResult result) {
         switch (result) {
             case MASTERED:

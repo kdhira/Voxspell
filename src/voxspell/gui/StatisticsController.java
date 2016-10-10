@@ -80,7 +80,10 @@ public class StatisticsController implements Initializable {
 
         ObservableList<Word> words = FXCollections.observableArrayList();
         for (Word w : User.getInstance().getSelectedTopicSet().atPosition(index).getWords()) {
-            words.add(w);
+            if (!w.isClear()) {
+                words.add(w);
+            }
+
         }
         tblStatistics.setItems(words);
         tclName.setCellValueFactory(new PropertyValueFactory<Word, String>("name"));
