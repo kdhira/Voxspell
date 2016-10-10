@@ -21,3 +21,6 @@ Notes:
         * A more useful Statistics screen, wth graphs.
         * Background music and sound effects.
         * Ability to practice words with a practice mode.
+
+
+Thanks.
