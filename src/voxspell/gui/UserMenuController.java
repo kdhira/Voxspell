@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -51,16 +52,24 @@ public class UserMenuController implements Initializable {
     void btnLoginPressed(ActionEvent event) {
         User.switchToUser(cbxNewUser.isSelected()?txtNewUser.getText():cmbUsers.getValue());
         if (User.getInstance().getSelectedTopicSet() == null) {
-            SceneSwitcher.getInstance().execute(SceneType.TOPIC_MENU);
+            SceneSwitcher.getInstance().addSceneDialogRequest(SceneType.TOPIC_MENU);
         }
         else {
-            SceneSwitcher.getInstance().execute(SceneType.MENU);
+            // SceneSwitcher.getInstance().execute(SceneType.MENU);
+            SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
         }
+        ((Stage)btnLogin.getScene().getWindow()).close();
     }
 
     @FXML
     void btnExitPressed(ActionEvent event) {
-        Platform.exit();
+        if (User.getInstance() == null) {
+            SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.EXIT);
+        }
+        else {
+            SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
+        }
+        ((Stage)btnExit.getScene().getWindow()).close();
     }
 
     @FXML
@@ -81,6 +90,9 @@ public class UserMenuController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        if (User.getInstance() != null) {
+            btnExit.setText("Back");
+        }
         loadUsers();
 
         // http://code.makery.ch/blog/javafx-2-event-handlers-and-change-listeners/
@@ -127,8 +139,14 @@ public class UserMenuController implements Initializable {
         cmbUsers.setItems(users);
 
         if (users.size() > 0) {
-            cmbUsers.getSelectionModel().select(0);
-            _userIndex = 0;
+            if (User.getInstance() != null) {
+                cmbUsers.getSelectionModel().select(User.getInstance().getName());
+                _userIndex = cmbUsers.getSelectionModel().getSelectedIndex();
+            }
+            else {
+                cmbUsers.getSelectionModel().select(0);
+                _userIndex = 0;
+            }
         }
         else {
             cbxNewUser.setSelected(true);

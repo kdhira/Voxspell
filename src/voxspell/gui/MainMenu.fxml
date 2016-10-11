@@ -25,7 +25,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
                <tooltip>
-                  <Tooltip text="Start a new quiz in the current level." />
+                  <Tooltip text="Start a new quiz in the current topic." />
                </tooltip>
             </Button>
             <BorderPane prefHeight="27.0" prefWidth="135.0">
@@ -68,7 +68,7 @@
             <Label fx:id="lblCurrentUser" alignment="CENTER" text="User: {None}" />
          </children>
       </VBox>
-      <Button fx:id="btnChangeLevel" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeLevelPressed" text="Level Select" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnChangeTopic" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeTopicPressed" text="Topic Select" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
       <Button fx:id="btnChangeUser" layoutX="288.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeUserPressed" text="User Select" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>

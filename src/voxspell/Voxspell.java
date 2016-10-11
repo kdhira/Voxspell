@@ -24,7 +24,7 @@ public class Voxspell extends Application {
         stage.setTitle("Voxspell - Spelling Aid");
 
         // Switch to the main menu and show.
-        SceneSwitcher.getInstance().execute(SceneType.USER_MENU);
+        SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
 
         // Set it so it can't be resized.
         stage.setResizable(false);
@@ -36,7 +36,6 @@ public class Voxspell extends Application {
     }
 
     public void stop() {
-        //TODO: Cleanup things.
         if (User.getInstance() != null) {
             User.getInstance().save();
         }

@@ -46,7 +46,7 @@ public class MainMenuController implements Initializable {
     private Button btnChangeUser;
 
     @FXML
-    private Button btnChangeLevel;
+    private Button btnChangeTopic;
 
     @FXML
     private Button btnSettings;
@@ -64,13 +64,13 @@ public class MainMenuController implements Initializable {
     @FXML
     void btnChangeUserPressed(ActionEvent event) {
         User.getInstance().save();
-        SceneSwitcher.getInstance().execute(SceneType.USER_MENU);
+        SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
     }
 
     @FXML
-    void btnChangeLevelPressed(ActionEvent event) {
+    void btnChangeTopicPressed(ActionEvent event) {
         User.getInstance().save();
-        SceneSwitcher.getInstance().execute(SceneType.TOPIC_MENU);
+        SceneSwitcher.getInstance().showDialog(SceneType.TOPIC_MENU);
     }
 
     @FXML

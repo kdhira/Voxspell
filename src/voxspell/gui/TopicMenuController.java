@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
+import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -47,17 +48,20 @@ public class TopicMenuController implements Initializable {
     void btnSubmitPressed(ActionEvent event) {
         User.getInstance().setTopic(cmbWordlists.getSelectionModel().getSelectedIndex(), cmbTopicLists.getSelectionModel().getSelectedIndex());
 
-        SceneSwitcher.getInstance().execute(SceneType.MENU);
+        SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
+
+        ((Stage)btnSubmit.getScene().getWindow()).close();
     }
 
     @FXML
     void btnBackPressed(ActionEvent event) {
         if (User.getInstance().getSelectedTopicSet() == null) {
-            Platform.exit();
+            SceneSwitcher.getInstance().addSceneDialogRequest(SceneType.USER_MENU);
         }
         else {
-            SceneSwitcher.getInstance().execute(SceneType.MENU);
+            SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
         }
+        ((Stage)btnBack.getScene().getWindow()).close();
     }
 
     @FXML
@@ -98,13 +102,6 @@ public class TopicMenuController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        if (User.getInstance().getSelectedTopicSet() == null) {
-            btnBack.setText("Exit");
-        }
-        else {
-            btnBack.setText("Back");
-        }
-
         setUpComboBoxes(0);
     }
 
