@@ -5,22 +5,22 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.UserMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.UserMenuController">
    <children>
-      <Label fx:id="lblTitle" alignment="CENTER" layoutX="117.0" layoutY="86.0" text="Choose User...">
+      <Label fx:id="lblTitle" alignment="CENTER" layoutX="75.0" layoutY="36.0" text="Choose User...">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="lblAuthor" layoutX="117.0" layoutY="373.0" text="KD Hira, The University of Auckland">
+      <Label fx:id="lblAuthor" layoutX="67.0" layoutY="213.0" text="KD Hira, The University of Auckland">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbUsers" layoutX="94.0" layoutY="148.0" onAction="#cmbUsersSelectionChanged" prefHeight="27.0" prefWidth="199.0" />
-      <CheckBox fx:id="cbxNewUser" layoutX="94.0" layoutY="186.0" mnemonicParsing="false" onAction="#cbxNewUserSelectedChanged" text="New User:" />
-      <TextField fx:id="txtNewUser" layoutX="192.0" layoutY="181.0" onAction="#txtNewUserEnterPressed" prefHeight="27.0" prefWidth="101.0" />
-      <Button fx:id="btnLogin" layoutX="94.0" layoutY="226.0" mnemonicParsing="false" onAction="#btnLoginPressed" prefWidth="55.0" text="Login" />
-      <Button fx:id="btnExit" layoutX="238.0" layoutY="226.0" mnemonicParsing="false" onAction="#btnExitPressed" prefWidth="55.0" text="Exit" />
+      <ComboBox fx:id="cmbUsers" layoutX="52.0" layoutY="88.0" onAction="#cmbUsersSelectionChanged" prefHeight="27.0" prefWidth="199.0" />
+      <CheckBox fx:id="cbxNewUser" layoutX="52.0" layoutY="126.0" mnemonicParsing="false" onAction="#cbxNewUserSelectedChanged" text="New User:" />
+      <TextField fx:id="txtNewUser" layoutX="150.0" layoutY="121.0" onAction="#txtNewUserEnterPressed" prefHeight="27.0" prefWidth="101.0" />
+      <Button fx:id="btnLogin" layoutX="52.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnLoginPressed" prefHeight="27.0" prefWidth="78.0" text="Login" />
+      <Button fx:id="btnExit" layoutX="173.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnExitPressed" prefHeight="27.0" prefWidth="78.0" text="Exit" />
    </children>
 </AnchorPane>
