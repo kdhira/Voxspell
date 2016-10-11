@@ -55,7 +55,6 @@ public class UserMenuController implements Initializable {
             SceneSwitcher.getInstance().addSceneDialogRequest(SceneType.TOPIC_MENU);
         }
         else {
-            // SceneSwitcher.getInstance().execute(SceneType.MENU);
             SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
         }
         ((Stage)btnLogin.getScene().getWindow()).close();
@@ -63,7 +62,7 @@ public class UserMenuController implements Initializable {
 
     @FXML
     void btnExitPressed(ActionEvent event) {
-        if (User.getInstance() == null) {
+        if (User.getInstance() == null || SceneSwitcher.getInstance().getStage().getScene() == null) {
             SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.EXIT);
         }
         else {
@@ -90,7 +89,7 @@ public class UserMenuController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        if (User.getInstance() != null) {
+        if (User.getInstance() != null && SceneSwitcher.getInstance().getStage().getScene() != null) {
             btnExit.setText("Back");
         }
         loadUsers();

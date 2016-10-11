@@ -60,7 +60,7 @@ public class SceneSwitcher {
             return FXMLLoader.load(getClass().getResource(fxml));
         }
         catch (IOException e) {
-            System.err.println("Could not find \"" + fxml + "\"");
+            System.err.println("Could not load \"" + fxml + "\"");
             return null;
         }
     }
@@ -111,7 +111,6 @@ public class SceneSwitcher {
         if (_dialogDepth > 1) {
             return;
         }
-
         int i = 0;
         while (i < _requestQueue.size()) {
             if (_requestTypes.get(i)) {

@@ -42,12 +42,8 @@ public class TopicMenuController implements Initializable {
     private ComboBox<String> cmbWordlists;
 
     @FXML
-    private ComboBox<String> cmbTopicLists;
-
-    @FXML
     void btnSubmitPressed(ActionEvent event) {
-        User.getInstance().setTopic(cmbWordlists.getSelectionModel().getSelectedIndex(), cmbTopicLists.getSelectionModel().getSelectedIndex());
-
+        User.getInstance().setTopic(cmbWordlists.getSelectionModel().getSelectedIndex(), 0);
         SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
 
         ((Stage)btnSubmit.getScene().getWindow()).close();
@@ -66,36 +62,17 @@ public class TopicMenuController implements Initializable {
 
     @FXML
     void btnImportPressed(ActionEvent event) {
-        FileChooser fChooser = new FileChooser();
-        fChooser.setTitle("Open Word List");
-        fChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-        fChooser.setInitialDirectory(new File("./resources"));
-
-        File f = fChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
-
-        if (f != null) {
-            try {
-                if (User.getInstance().addWordlist(f.getCanonicalPath())) {
-                    cmbWordlists.getItems().add(f.getName());
-                    int newTopicIndex = User.getInstance().getTopicSets().size()-1;
-                    cmbWordlists.getSelectionModel().select(newTopicIndex);
-                }
-            }
-            catch (IOException e) {
-
-            }
-        }
+        retrieveNewList();
 
     }
 
     @FXML
     void cmbWordlistsSelectionChanged(ActionEvent event) {
-        int topicSetIndex = cmbWordlists.getSelectionModel().getSelectedIndex();
-        if (topicSetIndex >= 0 && topicSetIndex < User.getInstance().getTopicSets().size()) {
-            TopicSet selectedTopic = User.getInstance().getTopicSets().get(topicSetIndex);
-            updateTopicChoices(selectedTopic);
-        }
-
+        // int topicSetIndex = cmbWordlists.getSelectionModel().getSelectedIndex();
+        // if (topicSetIndex >= 0 && topicSetIndex < User.getInstance().getTopicSets().size()) {
+        //     TopicSet selectedTopic = User.getInstance().getTopicSets().get(topicSetIndex);
+        //     updateTopicChoices(selectedTopic);
+        // }
 
 
     }
@@ -113,24 +90,41 @@ public class TopicMenuController implements Initializable {
         }
 
         cmbWordlists.setItems(wordlists);
-
-        if (init >= 0 && wordlists.size() > init) {
+        if (wordlists.size() == 0) {
+            if (retrieveNewList()) {
+                setUpComboBoxes(init);
+            }
+        }
+        else if (init >= 0 && wordlists.size() > init) {
             cmbWordlists.getSelectionModel().select(init);
-            updateTopicChoices(User.getInstance().getTopicSets().get(init));
+            btnSubmit.setDisable(false);
         }
     }
 
-    private void updateTopicChoices(TopicSet selectedTopic) {
-        ObservableList<String> topics = FXCollections.observableArrayList();
-        for (int i = 0; i < selectedTopic.size(); ++i) {
-            topics.add(selectedTopic.atPosition(i).getName());
+    private boolean retrieveNewList() {
+        FileChooser fChooser = new FileChooser();
+        fChooser.setTitle("Open Word List");
+        fChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        fChooser.setInitialDirectory(new File("./resources"));
+
+        File f = fChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
+
+        if (f != null) {
+            try {
+                if (User.getInstance().addWordlist(f.getCanonicalPath())) {
+                    cmbWordlists.getItems().add(f.getName());
+                    int newTopicIndex = User.getInstance().getTopicSets().size()-1;
+                    setUpComboBoxes(newTopicIndex);
+                }
+            }
+            catch (IOException e) {
+                return false;
+            }
+        }
+        else {
+            return false;
         }
 
-        cmbTopicLists.setItems(topics);
-
-        if (topics.size() > 0) {
-            cmbTopicLists.getSelectionModel().select(0);
-            btnSubmit.setDisable(false);
-        }
+        return true;
     }
 }

@@ -23,11 +23,11 @@ public class Voxspell extends Application {
         // Set the title and closeRequest.
         stage.setTitle("Voxspell - Spelling Aid");
 
-        // Switch to the main menu and show.
-        SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
-
         // Set it so it can't be resized.
         stage.setResizable(false);
+
+        // Switch to the main menu and show.
+        SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
     }
 
     public static void main(String[] args) {
