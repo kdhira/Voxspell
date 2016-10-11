@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.SettingsController">
+<AnchorPane fx:id="pneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.SettingsController">
    <children>
       <Label fx:id="lblTitle" alignment="CENTER" layoutX="157.0" layoutY="14.0" text="Settings">
          <font>
@@ -16,6 +17,14 @@
       <ComboBox fx:id="cmbFestival" layoutX="16.0" layoutY="81.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0" />
       <Label layoutX="16.0" layoutY="64.0" text="Festival Voice:" />
       <Label layoutX="16.0" layoutY="125.0" text="Words per Quiz" />
-      <TextField fx:id="txtWordsPerQuiz" layoutX="14.0" layoutY="142.0" prefHeight="27.0" prefWidth="150.0" />
+      <Pane layoutX="14.0" layoutY="142.0" prefHeight="35.0" prefWidth="75.0">
+          <children>
+              <Spinner fx:id="sprWordsPerQuiz" prefHeight="27.0" prefWidth="75.0">
+                  <valueFactory>
+                      <SpinnerValueFactory.IntegerSpinnerValueFactory max="20" min="3" />
+                  </valueFactory>
+              </Spinner>
+          </children>
+      </Pane>
    </children>
 </AnchorPane>
