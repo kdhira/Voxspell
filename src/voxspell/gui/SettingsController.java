@@ -46,6 +46,7 @@ public class SettingsController implements Initializable {
 
     @FXML
     void btnClearStatsPressed(ActionEvent event) {
+        //TODO: Show a confirmation dialog of some sort maybe?
         User.getInstance().getSelectedTopicSet().clear();
         User.getInstance().setTopicLevel(0);
     }
@@ -71,12 +72,6 @@ public class SettingsController implements Initializable {
                 User.getInstance().setWordsPerQuiz(sprWordsPerQuiz.getValue());
             }
         });
-
-        // sprWordsPerQuiz = new Spinner();
-        // sprWordsPerQuiz.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(3, 30, User.getInstance().getWordsPerQuiz()));
-        // sprWordsPerQuiz.relocate(200, 200);
-        // pneRoot.getChildren().add(sprWordsPerQuiz);
-        // sprWordsPerQuiz.getValueFactory().setValue();
     }
 
     private void cmbFestivalSetUp() {
