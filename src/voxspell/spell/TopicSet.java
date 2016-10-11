@@ -97,4 +97,12 @@ public class TopicSet implements Serializable {
         return _fileName;
     }
 
+    public void clear() {
+        //TODO: More checking here. What if user modifies wordlist (clears it) in the txt file, then goes clear statistics?
+        _topicProgression.clear();
+        _topicPool.clear();
+        buildTopicSet();
+
+    }
+
 }

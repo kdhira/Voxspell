@@ -26,5 +26,6 @@
               </Spinner>
           </children>
       </Pane>
+      <Button fx:id="btnClearStats" layoutX="16.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnClearStatsPressed" prefHeight="27.0" prefWidth="150.0" text="Clear Statistics" />
    </children>
 </AnchorPane>

@@ -42,6 +42,15 @@ public class SettingsController implements Initializable {
     private Spinner<Integer> sprWordsPerQuiz;
 
     @FXML
+    private Button btnClearStats;
+
+    @FXML
+    void btnClearStatsPressed(ActionEvent event) {
+        User.getInstance().getSelectedTopicSet().clear();
+        User.getInstance().setTopicLevel(0);
+    }
+
+    @FXML
     void cmbFestivalSelectionChanged(ActionEvent event) {
         User.getInstance().setFestivalVoice(cmbFestival.getValue());
     }
