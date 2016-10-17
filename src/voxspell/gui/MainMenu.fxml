@@ -8,67 +8,72 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.MainMenuController">
    <children>
-      <Label fx:id="lblTitle" alignment="CENTER" layoutX="94.0" layoutY="86.0" text="Voxspell Spelling Aid">
-         <font>
-            <Font size="22.0" />
-         </font></Label>
-      <Label fx:id="lblAuthor" alignment="CENTER" layoutX="116.0" layoutY="373.0" text="KD Hira, The University of Auckland">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="166.0" prefHeight="174.0" prefWidth="200.0">
+      <VBox alignment="CENTER" layoutX="94.0" layoutY="86.0">
          <children>
-            <ComboBox fx:id="cmbTopics" onAction="#cmbTopicsSelectionChanged" prefHeight="27.0" prefWidth="196.0" />
-            <Button fx:id="btnNewQuiz" mnemonicParsing="false" onAction="#btnNewQuizPressed" prefHeight="20.0" prefWidth="200.0" text="New Quiz">
-               <VBox.margin>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </VBox.margin>
-               <tooltip>
-                  <Tooltip text="Start a new quiz in the current topic." />
-               </tooltip>
-            </Button>
-            <BorderPane prefHeight="27.0" prefWidth="135.0">
-               <left>
-                  <Button fx:id="btnViewStatistics" mnemonicParsing="false" onAction="#btnViewStatisticsPressed" prefHeight="27.0" prefWidth="110.0" text="View Statistics" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets top="2.0" />
-                     </BorderPane.margin>
+            <Label fx:id="lblTitle" alignment="CENTER" layoutX="94.0" layoutY="86.0" text="%app.titleFull" textAlignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" layoutX="104.0" layoutY="114.0" prefHeight="53.0" prefWidth="196.0">
+               <children>
+                  <Label fx:id="lblCurrentUser" alignment="CENTER" text="User: {None}" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="166.0" prefHeight="174.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnNewQuiz" minWidth="200.0" mnemonicParsing="false" onAction="#btnNewQuizPressed" prefHeight="27.0" text="%mainMenu.newQuiz" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin>
                      <tooltip>
-                        <Tooltip text="View information on how well you've done." />
+                        <Tooltip text="Start a new quiz in the current topic." />
                      </tooltip>
                   </Button>
-               </left>
-               <right>
-                  <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#btnSettingsPressed" prefHeight="27.0" prefWidth="80.0" text="Settings" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets top="2.0" />
-                     </BorderPane.margin>
+                  <ComboBox fx:id="cmbTopics" minWidth="200.0" onAction="#cmbTopicsSelectionChanged" prefHeight="27.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                  <BorderPane prefHeight="27.0" prefWidth="135.0">
+                     <left>
+                        <Button fx:id="btnViewStatistics" mnemonicParsing="false" onAction="#btnViewStatisticsPressed" prefHeight="27.0" prefWidth="110.0" text="%mainMenu.viewStatistics" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets top="2.0" />
+                           </BorderPane.margin>
+                           <tooltip>
+                              <Tooltip text="View information on how well you've done." />
+                           </tooltip>
+                        </Button>
+                     </left>
+                     <right>
+                        <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#btnSettingsPressed" prefHeight="27.0" prefWidth="80.0" text="%mainMenu.settings" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets top="2.0" />
+                           </BorderPane.margin>
+                           <tooltip>
+                              <Tooltip text="Change the settings of Voxspell." />
+                           </tooltip>
+                        </Button>
+                     </right>
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin>
+                  </BorderPane>
+                  <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExitPressed" prefHeight="20.0" prefWidth="100.0" text="%mainMenu.exit">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="30.0" />
+                     </VBox.margin>
                      <tooltip>
-                        <Tooltip text="Change the settings of Voxspell." />
+                        <Tooltip text="Quit Voxspell." />
                      </tooltip>
                   </Button>
-               </right>
-               <VBox.margin>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </VBox.margin>
-            </BorderPane>
-            <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExitPressed" prefHeight="20.0" prefWidth="100.0" text="Exit">
-               <VBox.margin>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="30.0" />
-               </VBox.margin>
-               <tooltip>
-                  <Tooltip text="Quit Voxspell." />
-               </tooltip>
-            </Button>
+               </children>
+            </VBox>
+            <Label fx:id="lblAuthor" alignment="CENTER" layoutX="116.0" layoutY="373.0" text="KD Hira, The University of Auckland">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="104.0" layoutY="114.0" prefHeight="53.0" prefWidth="196.0">
-         <children>
-            <Label fx:id="lblCurrentUser" alignment="CENTER" text="User: {None}" />
-         </children>
-      </VBox>
-      <Button fx:id="btnChangeTopic" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeTopicPressed" text="Topic Select" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="btnChangeUser" layoutX="288.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeUserPressed" text="User Select" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnChangeTopic" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeTopicPressed" text="%mainMenu.wordlistSelect" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnChangeUser" layoutX="288.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeUserPressed" text="%mainMenu.userSelect" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>

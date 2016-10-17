@@ -45,6 +45,17 @@ public class SettingsController implements Initializable {
     private Button btnClearStats;
 
     @FXML
+    private Button btnDeleteUser;
+
+    @FXML
+    void btnDeleteUserPressed(ActionEvent event) {
+        //TODO: Show a confirmation dialog of some sort maybe?
+        User.deleteCurrentUser();
+        SceneSwitcher.getInstance().execute(SceneType.TITLE_MENU);
+        SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
+    }
+
+    @FXML
     void btnClearStatsPressed(ActionEvent event) {
         //TODO: Show a confirmation dialog of some sort maybe?
         User.getInstance().getSelectedTopicSet().clear();

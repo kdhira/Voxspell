@@ -92,6 +92,8 @@ public class MainMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setTextElements();
         loadTopics();
+
+        lblAuthor.setText(rb.getString("app.authorShort") + ", " + rb.getString("app.affiliation"));
     }
 
     private void setTextElements() {

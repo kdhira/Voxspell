@@ -1,5 +1,7 @@
 package voxspell.gui;
+
 import voxspell.Voxspell;
+import voxspell.user.User;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +11,8 @@ import javafx.stage.Modality;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javafx.application.Platform;
 
@@ -47,6 +51,8 @@ public class SceneSwitcher {
                 return tryRetrieve("UserMenu.fxml");
             case TOPIC_MENU:
                 return tryRetrieve("TopicMenu.fxml");
+            case TITLE_MENU:
+                return tryRetrieve("TitleMenu.fxml");
             default:
                 System.err.println("Not implemented.");
             case MENU:
@@ -57,10 +63,15 @@ public class SceneSwitcher {
 
     private Parent tryRetrieve(String fxml) {
         try {
-            return FXMLLoader.load(getClass().getResource(fxml));
+            FXMLLoader fLoader = new FXMLLoader();
+            fLoader.setResources(getResources());
+            fLoader.setLocation(getClass().getResource(fxml));
+
+            return fLoader.load();
         }
         catch (IOException e) {
             System.err.println("Could not load \"" + fxml + "\"");
+            e.printStackTrace();
             return null;
         }
     }
@@ -137,6 +148,11 @@ public class SceneSwitcher {
     private void addToQueue(SceneType s, boolean isDialog) {
         _requestQueue.add(s);
         _requestTypes.add(isDialog);
+    }
+
+    public ResourceBundle getResources() {
+        Locale locale = User.getInstance() != null ? User.getInstance().getLocale() : new Locale("en", "EN");
+        return ResourceBundle.getBundle("voxspell.properties.lang", locale);
     }
 
 

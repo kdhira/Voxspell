@@ -20,10 +20,9 @@ public class TopicSet implements Serializable {
     public TopicSet(String fileName) {
         _fileName = fileName;
         _topicPool = new HashMap<String, Topic>();
-        buildTopicSet();
     }
 
-    public void buildTopicSet() {
+    public boolean buildTopicSet() {
         _topicProgression = new ArrayList<Topic>();
 
         Topic currentTopic = null;
@@ -36,13 +35,13 @@ public class TopicSet implements Serializable {
                     currentTopic = getOrCreateTopic(line.substring(1));
                     if (currentTopic == null) {
                         System.err.println("Somehow could not create topic " + line + ".");
-                        return;
+                        return false;
                     }
                     continue;
                 }
                 else if (currentTopic == null) {
                     System.err.println("Line \"" + line + "\" or above should be topic header, but isn't.");
-                    return;
+                    return false;
                 }
                 currentTopic.add(line);
             }
@@ -51,7 +50,10 @@ public class TopicSet implements Serializable {
         }
         catch (IOException e) {
             System.err.println("IOError.");
+            return false;
         }
+
+        return true;
     }
 
     private void addTopicToProgression(Topic t) {

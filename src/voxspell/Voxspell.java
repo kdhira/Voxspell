@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.application.Platform;
 
 import java.io.File;
+import java.util.ResourceBundle;
 
 public class Voxspell extends Application {
 
@@ -20,13 +21,15 @@ public class Voxspell extends Application {
         // Save the stage reference.
         _stage = stage;
 
-        // Set the title and closeRequest.
-        stage.setTitle("Voxspell - Spelling Aid");
+        // Set the title.
+        ResourceBundle rb = SceneSwitcher.getInstance().getResources();
+        stage.setTitle(rb.getString("app.title") + " - " + rb.getString("app.version"));
 
         // Set it so it can't be resized.
         stage.setResizable(false);
 
         // Switch to the main menu and show.
+        SceneSwitcher.getInstance().execute(SceneType.TITLE_MENU);
         SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
     }
 

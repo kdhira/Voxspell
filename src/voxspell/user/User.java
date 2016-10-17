@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,6 +31,7 @@ public class User implements Serializable {
 
     private Integer _wordsPerQuiz;
     private String _festivalVoice;
+    private Locale _locale;
 
     private User(String name) {
         _username = name;
@@ -40,6 +42,7 @@ public class User implements Serializable {
 
         _wordsPerQuiz = 10;
         _festivalVoice = "American"; //Change to a default value, not hardcode.
+        _locale = new Locale("en", "EN");
     }
 
     public static User getInstance() {
@@ -53,10 +56,13 @@ public class User implements Serializable {
         catch (IOException|ClassNotFoundException e) {
 
         }
-
         if (_userInstance != null) {
-            for (TopicSet t : _userInstance._wordlists) {
-                t.buildTopicSet();
+            List<TopicSet> oldTopicSets = new ArrayList<TopicSet>(_userInstance._wordlists);
+            _userInstance._wordlists.clear();
+            for (TopicSet t : oldTopicSets) {
+                if (t.buildTopicSet()) {
+                    _userInstance._wordlists.add(t);
+                }
             }
         }
 
@@ -83,10 +89,23 @@ public class User implements Serializable {
 
     }
 
+    public static void deleteCurrentUser() {
+        if (_userInstance != null) {
+            try {
+                new File(_userInstance._saveLocation).delete();
+            }
+            catch (Exception e) {
+
+            }
+            _userInstance = null;
+        }
+    }
+
     public boolean addWordlist(String name) {
         if (find(name) == null) {
             TopicSet newTopicSet = new TopicSet(name);
-            if (newTopicSet.size() == 0) {
+            boolean sucessfulAdd = newTopicSet.buildTopicSet();
+            if (!sucessfulAdd || newTopicSet.size() == 0) {
                 return false;
             }
             _wordlists.add(newTopicSet);
@@ -166,5 +185,17 @@ public class User implements Serializable {
         }
 
         _festivalVoice = voice;
+    }
+
+    public Locale getLocale() {
+        return _locale;
+    }
+
+    public void setLocale(String language) {
+        _locale = new Locale(language);
+    }
+
+    public void setLocale(String language, String region) {
+        _locale = new Locale(language, region);
     }
 }
