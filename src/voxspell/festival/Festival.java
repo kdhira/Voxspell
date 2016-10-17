@@ -126,11 +126,14 @@ public class Festival {
     /**
      * Wraps voice text into scheme and sends it to the FestivalWorker.
      */
-    public void changeVoice() {
-        String voice = User.getInstance().getFestivalVoice();
+    public void changeVoice(String voice) {
         System.out.println("(" + _festivalVoices.get(voice) + ")");
         _festivalService.setText("(" + _festivalVoices.get(voice) + ")");
         new Thread(_festivalService.createTask()).start();
+    }
+
+    public void changeVoice() {
+        changeVoice(User.getInstance().getFestivalVoice());
     }
 
     public void changeStretch(String stretch) {

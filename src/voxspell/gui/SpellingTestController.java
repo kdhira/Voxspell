@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ComboBox;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
 import javafx.scene.Node;
@@ -31,6 +32,9 @@ import java.util.LinkedList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class SpellingTestController implements Initializable {
 
@@ -63,6 +67,9 @@ public class SpellingTestController implements Initializable {
 
     @FXML
     private ScrollPane spnFlowScroll;
+
+    @FXML
+    private ComboBox<String> cmbFestival;
 
     private int _numberWords;
     private String _prompt;
@@ -98,11 +105,17 @@ public class SpellingTestController implements Initializable {
     }
 
     @FXML
+    void cmbFestivalSelectionChanged(ActionEvent event) {
+        Festival.getInstance().changeVoice(cmbFestival.getValue());
+    }
+
+    @FXML
     public void initialize(URL url, ResourceBundle rb) {
         _nCorrect = 0;
         _numberWords = User.getInstance().getWordsPerQuiz();
 
         Festival.getInstance().openFestival();
+        cmbFestivalSetUp();
 
         // http://code.makery.ch/blog/javafx-2-event-handlers-and-change-listeners/
         txtResponse.textProperty().addListener(new ChangeListener<String>() {
@@ -198,5 +211,16 @@ public class SpellingTestController implements Initializable {
 
     private void scrollToTop() {
         spnFlowScroll.setVvalue(0.00f);
+    }
+
+    private void cmbFestivalSetUp() {
+        ObservableList<String> voices = FXCollections.observableArrayList();
+
+        for (String v : Festival.getInstance().getVoices().keySet()) {
+            voices.add(v);
+        }
+
+        cmbFestival.setItems(voices);
+        cmbFestival.getSelectionModel().select(User.getInstance().getFestivalVoice());
     }
 }
