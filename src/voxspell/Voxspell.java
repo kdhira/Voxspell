@@ -13,13 +13,16 @@ import javafx.application.Platform;
 
 import java.io.File;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public class Voxspell extends Application {
 
+    private static Stack<Stage> _stages;
     private static Stage _stage;
     public void start(Stage stage) throws Exception {
         // Save the stage reference.
-        _stage = stage;
+        _stages = new Stack<Stage>();
+        _stages.push(stage);
 
         // Set the title.
         ResourceBundle rb = SceneSwitcher.getInstance().getResources();
@@ -44,7 +47,15 @@ public class Voxspell extends Application {
         }
     }
 
-    public static Stage getApplicationStage() {
-        return _stage;
+    public static void pushStage(Stage s) {
+        _stages.push(s);
+    }
+
+    public static Stage getStage() {
+        return _stages.peek();
+    }
+
+    public static Stage popStage() {
+        return _stages.pop();
     }
 }

@@ -1,6 +1,7 @@
 package voxspell.gui;
 
 import voxspell.user.User;
+import voxspell.Voxspell;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -89,6 +90,7 @@ public class UserMenuController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        SceneSwitcher.getInstance().getStage().setTitle("Choose User - Voxspell");
         if (User.getInstance() != null && SceneSwitcher.getInstance().getStage().getScene() != null) {
             btnExit.setText("Back");
         }

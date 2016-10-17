@@ -2,6 +2,7 @@ package voxspell.gui;
 
 import voxspell.user.User;
 import voxspell.spell.TopicSet;
+import voxspell.Voxspell;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -79,6 +80,7 @@ public class TopicMenuController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        SceneSwitcher.getInstance().getStage().setTitle("Choose Word List - Voxspell");
         setUpComboBoxes(0);
     }
 

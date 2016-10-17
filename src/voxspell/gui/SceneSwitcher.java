@@ -77,7 +77,7 @@ public class SceneSwitcher {
     }
 
     public Stage getStage() {
-        return Voxspell.getApplicationStage();
+        return Voxspell.getStage();
     }
 
     public Stage execute(SceneType newScene) {
@@ -111,9 +111,11 @@ public class SceneSwitcher {
         dialogStage.initOwner(getStage());
         dialogStage.initModality(Modality.APPLICATION_MODAL);
 
-        dialogStage.setScene(new Scene(getSceneFXML(dialogScene)));
         ++_dialogDepth;
+        Voxspell.pushStage(dialogStage);
+        dialogStage.setScene(new Scene(getSceneFXML(dialogScene)));
         dialogStage.showAndWait();
+        Voxspell.popStage();
         flushRequests();
         --_dialogDepth;
     }
