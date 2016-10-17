@@ -15,9 +15,6 @@ import java.io.File;
 import java.util.ResourceBundle;
 
 public class Voxspell extends Application {
-
-    private static Stack<Stage> _stages;
-    private static Stage _stage;
     public void start(Stage stage) throws Exception {
         // Save the stage reference.
         SceneSwitcher.getInstance().pushStage(stage);
