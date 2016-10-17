@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 import javafx.application.Platform;
 
@@ -24,6 +25,8 @@ import java.io.IOException;
  */
 public class SceneSwitcher {
     private static SceneSwitcher _sceneSwitcher;
+
+    private Stack<Stage> _stages;
 
     private List<SceneType> _requestQueue;
     private List<Boolean> _requestTypes;
@@ -37,6 +40,7 @@ public class SceneSwitcher {
         _requestQueue = new ArrayList<SceneType>();
         _requestTypes = new ArrayList<Boolean>();
         _dialogDepth = 0;
+        _stages = new Stack<Stage>();
     }
 
     private Parent getSceneFXML(SceneType newScene) {
@@ -76,8 +80,16 @@ public class SceneSwitcher {
         }
     }
 
+    public void pushStage(Stage s) {
+        _stages.push(s);
+    }
+
     public Stage getStage() {
-        return Voxspell.getStage();
+        return _stages.peek();
+    }
+
+    public Stage popStage() {
+        return _stages.pop();
     }
 
     public Stage execute(SceneType newScene) {
@@ -112,10 +124,10 @@ public class SceneSwitcher {
         dialogStage.initModality(Modality.APPLICATION_MODAL);
 
         ++_dialogDepth;
-        Voxspell.pushStage(dialogStage);
+        pushStage(dialogStage);
         dialogStage.setScene(new Scene(getSceneFXML(dialogScene)));
         dialogStage.showAndWait();
-        Voxspell.popStage();
+        popStage();
         flushRequests();
         --_dialogDepth;
     }
@@ -156,6 +168,4 @@ public class SceneSwitcher {
         Locale locale = User.getInstance() != null ? User.getInstance().getLocale() : new Locale("en", "EN");
         return ResourceBundle.getBundle("voxspell.properties.lang", locale);
     }
-
-
 }
