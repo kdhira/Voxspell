@@ -27,6 +27,7 @@
           </children>
       </Pane>
       <Button fx:id="btnClearStats" layoutX="16.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnClearStatsPressed" prefHeight="27.0" prefWidth="150.0" text="Clear Statistics" />
-      <Button fx:id="btnDeleteUser" layoutX="16.0" layoutY="223.0" mnemonicParsing="false" onAction="#btnDeleteUserPressed" prefHeight="27.0" prefWidth="150.0" text="Delete User" />
+      <Button fx:id="btnChangeWordList" layoutX="16.0" layoutY="223.0" mnemonicParsing="false" onAction="#btnChangeWordListPressed" prefHeight="27.0" prefWidth="150.0" text="Change Word List" />
+      <Button fx:id="btnDeleteUser" layoutX="16.0" layoutY="258.0" mnemonicParsing="false" onAction="#btnDeleteUserPressed" prefHeight="27.0" prefWidth="150.0" text="Delete User" />
    </children>
 </AnchorPane>

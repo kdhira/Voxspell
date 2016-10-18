@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public class TitleMenuController implements Initializable {
     @FXML
@@ -19,9 +20,24 @@ public class TitleMenuController implements Initializable {
     private Label lblAuthor;
 
     @FXML
+    private Button btnLogin;
+
+    @FXML
+    private Button btnExit;
+
+    @FXML
+    void btnExitPressed(ActionEvent event) {
+        SceneSwitcher.getInstance().showDialog(SceneType.EXIT);
+    }
+
+    @FXML
+    void btnLoginPressed(ActionEvent event) {
+        SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
+    }
+
+    @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        lblAuthor.setText(rb.getString("app.authorShort") + ", " + rb.getString("app.affiliation"));
-        
+
     }
 
 }

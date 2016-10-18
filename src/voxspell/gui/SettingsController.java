@@ -48,11 +48,19 @@ public class SettingsController implements Initializable {
     private Button btnDeleteUser;
 
     @FXML
+    private Button btnChangeWordList;
+
+    @FXML
+    void btnChangeWordListPressed(ActionEvent event) {
+        //Used to save here.
+        SceneSwitcher.getInstance().showDialog(SceneType.TOPIC_MENU);
+    }
+
+    @FXML
     void btnDeleteUserPressed(ActionEvent event) {
         //TODO: Show a confirmation dialog of some sort maybe?
         User.deleteCurrentUser();
         SceneSwitcher.getInstance().execute(SceneType.TITLE_MENU);
-        SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
     }
 
     @FXML

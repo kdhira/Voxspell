@@ -80,6 +80,7 @@ public class User implements Serializable {
         }
         else {
             _userInstance = new User(user);
+            _userInstance.save();
         }
 
         if (_userInstance == null) {
@@ -97,6 +98,13 @@ public class User implements Serializable {
             catch (Exception e) {
 
             }
+            _userInstance = null;
+        }
+    }
+
+    public static void logout() {
+        if (_userInstance != null) {
+            _userInstance.save();
             _userInstance = null;
         }
     }

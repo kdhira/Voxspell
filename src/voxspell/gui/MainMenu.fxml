@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.MainMenuController">
    <children>
-      <VBox alignment="CENTER" layoutX="94.0" layoutY="86.0">
+      <VBox alignment="CENTER" layoutX="75.0" prefHeight="400.0">
          <children>
             <Label fx:id="lblTitle" alignment="CENTER" layoutX="94.0" layoutY="86.0" text="%app.titleFull" textAlignment="CENTER">
                <font>
@@ -20,9 +20,9 @@
                   <Label fx:id="lblCurrentUser" alignment="CENTER" text="User: {None}" />
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="166.0" prefHeight="174.0" prefWidth="200.0">
+            <VBox alignment="TOP_CENTER" prefWidth="250.0">
                <children>
-                  <Button fx:id="btnNewQuiz" minWidth="200.0" mnemonicParsing="false" onAction="#btnNewQuizPressed" prefHeight="27.0" text="%mainMenu.newQuiz" VBox.vgrow="ALWAYS">
+                  <Button fx:id="btnNewQuiz" minWidth="250.0" mnemonicParsing="false" onAction="#btnNewQuizPressed" text="%mainMenu.newQuiz" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </VBox.margin>
@@ -30,7 +30,7 @@
                         <Tooltip text="Start a new quiz in the current topic." />
                      </tooltip>
                   </Button>
-                  <ComboBox fx:id="cmbTopics" minWidth="200.0" onAction="#cmbTopicsSelectionChanged" prefHeight="27.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                  <ComboBox fx:id="cmbTopics" minWidth="250.0" onAction="#cmbTopicsSelectionChanged" VBox.vgrow="ALWAYS" />
                   <BorderPane prefHeight="27.0" prefWidth="135.0">
                      <left>
                         <Button fx:id="btnViewStatistics" mnemonicParsing="false" onAction="#btnViewStatisticsPressed" prefHeight="27.0" prefWidth="110.0" text="%mainMenu.viewStatistics" BorderPane.alignment="CENTER">
@@ -56,24 +56,32 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </VBox.margin>
                   </BorderPane>
-                  <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExitPressed" prefHeight="20.0" prefWidth="100.0" text="%mainMenu.exit">
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutPressed" prefHeight="20.0" prefWidth="100.0" text="%mainMenu.logout">
+                           <VBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </VBox.margin>
+                           <tooltip>
+                              <Tooltip text="Quit Voxspell." />
+                           </tooltip>
+                        </Button>
+                     </children>
                      <VBox.margin>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="30.0" />
+                        <Insets top="30.0" />
                      </VBox.margin>
-                     <tooltip>
-                        <Tooltip text="Quit Voxspell." />
-                     </tooltip>
-                  </Button>
+                  </VBox>
                </children>
             </VBox>
             <Label fx:id="lblAuthor" alignment="CENTER" layoutX="116.0" layoutY="373.0" text="KD Hira, The University of Auckland">
                <font>
                   <Font size="10.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
             </Label>
          </children>
       </VBox>
-      <Button fx:id="btnChangeTopic" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeTopicPressed" text="%mainMenu.wordlistSelect" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="btnChangeUser" layoutX="288.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnChangeUserPressed" text="%mainMenu.userSelect" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>

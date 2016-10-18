@@ -40,13 +40,7 @@ public class MainMenuController implements Initializable {
     private Label lblCurrentUser;
 
     @FXML
-    private Button btnExit;
-
-    @FXML
-    private Button btnChangeUser;
-
-    @FXML
-    private Button btnChangeTopic;
+    private Button btnLogout;
 
     @FXML
     private Button btnSettings;
@@ -62,15 +56,9 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void btnChangeUserPressed(ActionEvent event) {
-        User.getInstance().save();
-        SceneSwitcher.getInstance().showDialog(SceneType.USER_MENU);
-    }
-
-    @FXML
-    void btnChangeTopicPressed(ActionEvent event) {
-        User.getInstance().save();
-        SceneSwitcher.getInstance().showDialog(SceneType.TOPIC_MENU);
+    void btnLogoutPressed(ActionEvent event) {
+        User.logout();
+        SceneSwitcher.getInstance().execute(SceneType.TITLE_MENU);
     }
 
     @FXML
@@ -84,16 +72,9 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void btnExitPressed(ActionEvent event) {
-        Platform.exit();
-    }
-
-    @FXML
     public void initialize(URL url, ResourceBundle rb) {
         setTextElements();
         loadTopics();
-
-        lblAuthor.setText(rb.getString("app.authorShort") + ", " + rb.getString("app.affiliation"));
     }
 
     private void setTextElements() {

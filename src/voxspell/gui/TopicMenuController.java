@@ -43,6 +43,9 @@ public class TopicMenuController implements Initializable {
     private ComboBox<String> cmbWordlists;
 
     @FXML
+    private Label lblAuthor;
+
+    @FXML
     void btnSubmitPressed(ActionEvent event) {
         User.getInstance().setTopic(cmbWordlists.getSelectionModel().getSelectedIndex(), 0);
         SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
@@ -55,9 +58,6 @@ public class TopicMenuController implements Initializable {
         if (User.getInstance().getSelectedTopicSet() == null) {
             SceneSwitcher.getInstance().addSceneDialogRequest(SceneType.USER_MENU);
         }
-        else {
-            SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
-        }
         ((Stage)btnBack.getScene().getWindow()).close();
     }
 
@@ -69,13 +69,6 @@ public class TopicMenuController implements Initializable {
 
     @FXML
     void cmbWordlistsSelectionChanged(ActionEvent event) {
-        // int topicSetIndex = cmbWordlists.getSelectionModel().getSelectedIndex();
-        // if (topicSetIndex >= 0 && topicSetIndex < User.getInstance().getTopicSets().size()) {
-        //     TopicSet selectedTopic = User.getInstance().getTopicSets().get(topicSetIndex);
-        //     updateTopicChoices(selectedTopic);
-        // }
-
-
     }
 
     @FXML

@@ -43,7 +43,7 @@
             <HBox>
                <children>
                   <Button fx:id="btnLogin" defaultButton="true" layoutX="51.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnLoginPressed" prefHeight="27.0" prefWidth="80.0" text="Login" />
-                  <Button fx:id="btnExit" cancelButton="true" layoutX="172.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnExitPressed" prefHeight="27.0" prefWidth="80.0" text="Exit" />
+                  <Button fx:id="btnBack" cancelButton="true" layoutX="172.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnBackPressed" prefHeight="27.0" prefWidth="80.0" text="Back" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />

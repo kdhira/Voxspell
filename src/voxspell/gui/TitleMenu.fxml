@@ -19,8 +19,21 @@
                <font>
                   <Font size="11.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="40.0" />
+               </VBox.margin>
             </Label>
-            <Label fx:id="lblAuthor" alignment="CENTER" layoutX="117.0" layoutY="194.0" text="KD Hira, The University of Auckland">
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLoginPressed" prefHeight="27.0" prefWidth="150.0" text="%titleMenu.login">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExitPressed" prefHeight="27.0" prefWidth="150.0" text="%titleMenu.exit">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Label fx:id="lblAuthor" alignment="CENTER" layoutX="117.0" layoutY="194.0" text="%app.footer">
                <font>
                   <Font size="17.0" />
                </font>

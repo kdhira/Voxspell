@@ -36,7 +36,7 @@ public class UserMenuController implements Initializable {
     private Button btnLogin;
 
     @FXML
-    private Button btnExit;
+    private Button btnBack;
 
     @FXML
     private CheckBox cbxNewUser;
@@ -62,14 +62,8 @@ public class UserMenuController implements Initializable {
     }
 
     @FXML
-    void btnExitPressed(ActionEvent event) {
-        if (User.getInstance() == null || SceneSwitcher.getInstance().getStage().getScene() == null) {
-            SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.EXIT);
-        }
-        else {
-            SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
-        }
-        ((Stage)btnExit.getScene().getWindow()).close();
+    void btnBackPressed(ActionEvent event) {
+        ((Stage)btnBack.getScene().getWindow()).close();
     }
 
     @FXML
@@ -91,9 +85,6 @@ public class UserMenuController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         SceneSwitcher.getInstance().getStage().setTitle("Choose User - Voxspell");
-        if (User.getInstance() != null && SceneSwitcher.getInstance().getStage().getScene() != null) {
-            btnExit.setText("Back");
-        }
         loadUsers();
 
         // http://code.makery.ch/blog/javafx-2-event-handlers-and-change-listeners/
