@@ -156,6 +156,7 @@ public class SpellingTestController implements Initializable {
                 txtResponse.setDisable(true);
                 btnSubmit.setDisable(true);
                 btnReplay.setDisable(true);
+                cmbFestival.setDisable(true);
                 break;
             case NEW_WORD:
                 outputResponse();
