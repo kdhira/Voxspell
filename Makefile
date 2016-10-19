@@ -17,4 +17,4 @@ clean:
 	rm -f saves/*
 
 publish:
-	COPYFILE_DISABLE=1 tar -cf release/Voxspell.tar resources/ src/ README.txt -C dist Voxspell.jar
+	COPYFILE_DISABLE=1 tar --exclude=".DS_Store" -cf release/Voxspell-${version}.tar resources/ src/ README.txt -C dist Voxspell.jar
