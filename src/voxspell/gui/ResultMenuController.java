@@ -36,7 +36,15 @@ public class ResultMenuController implements Initializable {
     @FXML
     private Label lblAccuracy;
 
+    @FXML
+    private Button btnReward;
+
     private Quiz _quiz;
+
+    @FXML
+    void btnRewardPressed(ActionEvent event) {
+        SceneSwitcher.getInstance().showDialog(SceneType.REWARDS_MENU);
+    }
 
     @FXML
     void btnBackPressed(ActionEvent event) {
@@ -49,6 +57,9 @@ public class ResultMenuController implements Initializable {
         loadPieChartData();
         lblLevel.setText(_quiz.getTopic().getName());
         lblAccuracy.setText("Accuracy: " + String.format("%.0f", _quiz.getAccuracy()*100) + "%");
+        if (_quiz.getAccuracy() < 0.8) {
+            btnReward.setVisible(false);
+        }
     }
 
     private void loadPieChartData() {

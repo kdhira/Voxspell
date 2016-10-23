@@ -49,6 +49,8 @@ public class SceneSwitcher {
                 return tryRetrieve("SpellingTest.fxml");
             case RESULT_MENU:
                 return tryRetrieve("ResultMenu.fxml");
+            case REWARDS_MENU:
+                return tryRetrieve("RewardsMenu.fxml");
             case VIEW_STATISTICS:
                 return tryRetrieve("Statistics.fxml");
             case SETTINGS:
@@ -124,6 +126,8 @@ public class SceneSwitcher {
 
         dialogStage.initOwner(getStage());
         dialogStage.initModality(Modality.APPLICATION_MODAL);
+
+        dialogStage.setResizable(false);
 
         ++_dialogDepth;
         pushStage(dialogStage);
