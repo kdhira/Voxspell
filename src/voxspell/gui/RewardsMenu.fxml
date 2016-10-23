@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxpsell.gui.RewardsMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.gui.RewardsMenuController">
    <children>
       <MediaView fx:id="mdaPlayer" fitHeight="300.0" fitWidth="400.0" layoutY="24.0" />
       <Button fx:id="btnPlay" layoutX="22.0" layoutY="351.0" mnemonicParsing="false" onAction="#btnPlayPressed" prefWidth="86.0" text="Play" />
