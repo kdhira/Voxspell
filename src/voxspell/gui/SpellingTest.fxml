@@ -54,5 +54,6 @@
       </Label>
       <Label fx:id="lblLevel" alignment="CENTER" layoutX="179.0" layoutY="42.0" text="{None}" textAlignment="CENTER" />
       <ComboBox fx:id="cmbFestival" layoutX="125.0" layoutY="359.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0" />
+      <Button fx:id="btnResults" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnResultsPressed" text="Proceed" />
    </children>
 </AnchorPane>

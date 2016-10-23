@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Date;
 
 public class Quiz {
+    private Date _quizDate;
     private List<Word> _quizWords;
     private LinkedList<SpellResult> _results;
     private Topic _topic;
@@ -20,6 +22,8 @@ public class Quiz {
 
 
     public Quiz(Topic topic, int nWords, boolean isReview) {
+        _quizDate = new Date();
+
         _topic = topic;
         _nWords = nWords;
         _isReview = isReview;
@@ -99,5 +103,17 @@ public class Quiz {
                 _quizWords.get(i).logStatistic(_results.get(i).getResult());
             }
         }
+    }
+
+    public Map<WordResult, Integer> retrieveTotals() {
+        Map<WordResult, Integer> totals = new HashMap<WordResult, Integer>();
+        for (SpellResult sR : _results) {
+            if (!totals.containsKey(sR.getResult())) {
+                totals.put(sR.getResult(), 0);
+            }
+            totals.put(sR.getResult(), totals.get(sR.getResult()) + 1);
+        }
+
+        return totals;
     }
 }

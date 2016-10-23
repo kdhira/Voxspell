@@ -47,6 +47,8 @@ public class SceneSwitcher {
         switch (newScene) {
             case NEW_QUIZ:
                 return tryRetrieve("SpellingTest.fxml");
+            case RESULT_MENU:
+                return tryRetrieve("ResultMenu.fxml");
             case VIEW_STATISTICS:
                 return tryRetrieve("Statistics.fxml");
             case SETTINGS:

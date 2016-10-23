@@ -71,6 +71,9 @@ public class SpellingTestController implements Initializable {
     @FXML
     private ComboBox<String> cmbFestival;
 
+    @FXML
+    private Button btnResults;
+
     private int _numberWords;
     private String _prompt;
     private Quiz _quiz;
@@ -79,6 +82,11 @@ public class SpellingTestController implements Initializable {
     private int _nCorrect;
 
     private Text currentOut;
+
+    @FXML
+    void btnResultsPressed(ActionEvent event) {
+        SceneSwitcher.getInstance().execute(SceneType.RESULT_MENU);
+    }
 
     @FXML
     void btnReplayPressed(ActionEvent event) {
@@ -134,6 +142,7 @@ public class SpellingTestController implements Initializable {
 
         Topic targetTopic = User.getInstance().targetTopic();
         _quiz = new Quiz(targetTopic, _numberWords, false);
+        User.getInstance().getQuizzes().add(_quiz);
         _results = _quiz.getResults();
         _numberWords = _quiz.numberWords();
 

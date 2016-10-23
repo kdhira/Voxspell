@@ -2,6 +2,7 @@ package voxspell.user;
 
 import voxspell.spell.Topic;
 import voxspell.spell.TopicSet;
+import voxspell.spell.Quiz;
 import voxspell.festival.Festival;
 
 import java.io.Serializable;
@@ -33,6 +34,8 @@ public class User implements Serializable {
     private String _festivalVoice;
     private Locale _locale;
 
+    private List<Quiz> _quizzes;
+
     private User(String name) {
         _username = name;
         _saveLocation = SAVE_DIRECTORY + name;
@@ -43,6 +46,8 @@ public class User implements Serializable {
         _wordsPerQuiz = 10;
         _festivalVoice = "American"; //Change to a default value, not hardcode.
         _locale = new Locale("en", "EN");
+
+        _quizzes = new ArrayList<Quiz>();
     }
 
     public static User getInstance() {
@@ -172,6 +177,17 @@ public class User implements Serializable {
     public void setTopic(int topicSetIndex, int topicIndex) {
         setSelectedTopicSet(_wordlists.get(topicSetIndex));
         setTopicLevel(topicIndex);
+    }
+
+    public List<Quiz> getQuizzes() {
+        return _quizzes;
+    }
+
+    public Quiz getLastQuiz() {
+        if (_quizzes.isEmpty()) {
+            return null;
+        }
+        return _quizzes.get(_quizzes.size()-1);
     }
 
     public int getWordsPerQuiz() {
