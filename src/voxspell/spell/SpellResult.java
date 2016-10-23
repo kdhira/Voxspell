@@ -1,6 +1,8 @@
 package voxspell.spell;
 
-public class SpellResult {
+import java.io.Serializable;
+
+public class SpellResult implements Serializable {
     private String _name;
     private WordResult _result;
 

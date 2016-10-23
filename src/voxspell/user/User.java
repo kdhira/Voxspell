@@ -59,7 +59,7 @@ public class User implements Serializable {
             _userInstance = (User)oIS.readObject();
         }
         catch (IOException|ClassNotFoundException e) {
-
+            e.printStackTrace();
         }
         if (_userInstance != null) {
             List<TopicSet> oldTopicSets = new ArrayList<TopicSet>(_userInstance._wordlists);

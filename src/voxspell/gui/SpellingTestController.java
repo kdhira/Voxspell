@@ -98,8 +98,8 @@ public class SpellingTestController implements Initializable {
     void btnSubmitPressed(ActionEvent event) {
         if (!txtResponse.getText().equals("")) {
             queryQuiz();
-            pgiWheel.setProgress(_quiz.currentIndex() / (double)_numberWords);
-            pgbProgress.setProgress(_nCorrect / (double)_quiz.currentIndex());
+            pgiWheel.setProgress(_quiz.getCompletion());
+            pgbProgress.setProgress(_quiz.getAccuracy());
             txtResponse.setText("");
         }
 

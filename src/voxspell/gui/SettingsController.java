@@ -68,6 +68,7 @@ public class SettingsController implements Initializable {
         //TODO: Show a confirmation dialog of some sort maybe?
         User.getInstance().getSelectedTopicSet().clear();
         User.getInstance().setTopicLevel(0);
+        User.getInstance().getQuizzes().clear();
     }
 
     @FXML

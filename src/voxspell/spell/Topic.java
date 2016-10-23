@@ -66,7 +66,7 @@ public class Topic implements Serializable {
 
         Collections.shuffle(words);
         if (words.size() >= n) {
-            return words.subList(0, n);
+            return new ArrayList<Word>(words.subList(0, n));
         }
         return words;
     }

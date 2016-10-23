@@ -1,5 +1,7 @@
 package voxspell.spell;
 
+import java.io.Serializable;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -7,18 +9,19 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Date;
 
-public class Quiz {
+public class Quiz implements Serializable {
     private Date _quizDate;
     private List<Word> _quizWords;
     private LinkedList<SpellResult> _results;
     private Topic _topic;
-    private int _nWords;
-    private boolean _isReview;
+    private Integer _nWords;
+    private Boolean _isReview;
 
-    private boolean _isFinised;
+    private Boolean _isFinised;
 
-    private int _wordIndex;
-    private int _wordFlag;
+    private Integer _wordIndex;
+    private Integer _wordFlag;
+    private Integer _nCorrect;
 
 
     public Quiz(Topic topic, int nWords, boolean isReview) {
@@ -30,6 +33,8 @@ public class Quiz {
 
         _wordIndex = 0;
         _wordFlag = 0;
+
+        _nCorrect = 0;
 
         _results = new LinkedList<SpellResult>();
 
@@ -87,8 +92,11 @@ public class Quiz {
     }
 
     private boolean nextWord() {
-        // _quizWords.get(_wordIndex).logStatistic(WordResult.parse(_wordFlag));
-        _results.addLast(new SpellResult(currentWord(), WordResult.parse(_wordFlag)));
+        WordResult wR = WordResult.parse(_wordFlag);
+        if (wR == WordResult.MASTERED) {
+            ++_nCorrect;
+        }
+        _results.addLast(new SpellResult(currentWord(), wR));
         _wordFlag = 0;
         if (++_wordIndex >= numberWords()) {
             _isFinised = true;
@@ -115,5 +123,17 @@ public class Quiz {
         }
 
         return totals;
+    }
+
+    public double getAccuracy() {
+        return _wordIndex == 0 ? 0.0 : _nCorrect / (double)_wordIndex;
+    }
+
+    public double getCompletion() {
+        return _wordIndex / (double)numberWords();
+    }
+
+    public Topic getTopic() {
+        return _topic;
     }
 }
