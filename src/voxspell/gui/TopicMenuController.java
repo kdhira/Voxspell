@@ -48,8 +48,6 @@ public class TopicMenuController implements Initializable {
     @FXML
     void btnSubmitPressed(ActionEvent event) {
         User.getInstance().setTopic(cmbWordlists.getSelectionModel().getSelectedIndex(), 0);
-        SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
-
         ((Stage)btnSubmit.getScene().getWindow()).close();
     }
 
