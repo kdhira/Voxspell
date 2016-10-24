@@ -3,6 +3,7 @@ package voxspell.gui;
 import voxspell.user.User;
 import voxspell.spell.Topic;
 import voxspell.spell.TopicSet;
+import voxspell.music.Music;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,6 +47,14 @@ public class MainMenuController implements Initializable {
     private Button btnSettings;
 
     @FXML
+    private Button btnHistory;
+
+    @FXML
+    void btnHistoryPressed(ActionEvent event) {
+        SceneSwitcher.getInstance().execute(SceneType.HISTORY_MENU);
+    }
+
+    @FXML
     void cmbTopicsSelectionChanged(ActionEvent event) {
         User.getInstance().setTopicLevel(cmbTopics.getSelectionModel().getSelectedIndex());
     }
@@ -57,6 +66,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void btnLogoutPressed(ActionEvent event) {
+        Music.getInstance().stop();
         User.logout();
         SceneSwitcher.getInstance().execute(SceneType.TITLE_MENU);
     }
@@ -68,6 +78,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void btnNewQuizPressed(ActionEvent event) {
+        Music.getInstance().stop();
         SceneSwitcher.getInstance().execute(SceneType.NEW_QUIZ);
     }
 
@@ -75,6 +86,11 @@ public class MainMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setTextElements();
         loadTopics();
+        Music.getInstance().play();
+
+        if (User.getInstance().getQuizzes().isEmpty()) {
+            btnHistory.setVisible(false);
+        }
     }
 
     private void setTextElements() {

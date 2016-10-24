@@ -136,4 +136,8 @@ public class Quiz implements Serializable {
     public Topic getTopic() {
         return _topic;
     }
+
+    public Date getDateCompleted() {
+        return _quizDate;
+    }
 }

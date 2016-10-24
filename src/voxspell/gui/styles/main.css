@@ -1,0 +1,78 @@
+* {
+    -fx-font-family: "Arial";
+}
+
+.root {
+    -fx-background: #c4e7ff;
+    -fx-background: #c8d5ea;
+    -fx-background: #dae3f1;
+
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-background-color: #29436d;
+    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+
+.button:focused, .combo-box:focused {
+    /*-fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;*/
+    -fx-background-color: #385b94;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: #4672b9;
+}
+
+.combo-box {
+    -fx-text-fill: white;
+    -fx-background-color: #29436d;
+    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+
+.combo-box .cell {
+    -fx-text-fill: white;
+    -fx-background-color: #29436d;
+}
+
+.combo-box .cell:hover {
+    -fx-background-color: #4672b9;
+}
+
+.combo-box .arrow{
+    -fx-background-color: white;
+}
+
+.text-field {
+    -fx-background-insets: -2 -2 -2 -2, 0, 1, 2;
+    -fx-background-color: #FFFFFF, #FFFFFF;
+}
+
+.text-field:focused {
+    -fx-background-color: #385b94, #FFFFFF;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-body-color: #29436d;
+}
+
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: white;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-body-color: #4672b9;
+}
+
+.spinner .increment-arrow-button:hover:pressed,
+.spinner .decrement-arrow-button:hover:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-body-color: #385b94
+}
+
+/*-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%), radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); -fx-background-radius: 10; -fx-background-insets: 0,1,1; -fx-text-fill: black; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );*/

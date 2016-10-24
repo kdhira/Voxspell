@@ -71,9 +71,6 @@ public class SpellingTestController implements Initializable {
     @FXML
     private ComboBox<String> cmbFestival;
 
-    @FXML
-    private Button btnResults;
-
     private int _numberWords;
     private String _prompt;
     private Quiz _quiz;
@@ -82,11 +79,6 @@ public class SpellingTestController implements Initializable {
     private int _nCorrect;
 
     private Text currentOut;
-
-    @FXML
-    void btnResultsPressed(ActionEvent event) {
-        SceneSwitcher.getInstance().execute(SceneType.RESULT_MENU);
-    }
 
     @FXML
     void btnReplayPressed(ActionEvent event) {
@@ -109,7 +101,16 @@ public class SpellingTestController implements Initializable {
     @FXML
     void btnMenuPressed(ActionEvent event) {
         Festival.getInstance().closeFestival();
-        SceneSwitcher.getInstance().execute(SceneType.MENU);
+        switch (btnMenu.getText()) {
+            case "Back to Menu":
+                SceneSwitcher.getInstance().execute(SceneType.MENU);
+                break;
+            case "View Results":
+                SceneSwitcher.getInstance().execute(SceneType.RESULT_MENU);
+                break;
+            default:
+                break;
+        }
     }
 
     @FXML
@@ -142,7 +143,6 @@ public class SpellingTestController implements Initializable {
 
         Topic targetTopic = User.getInstance().targetTopic();
         _quiz = new Quiz(targetTopic, _numberWords, false);
-        User.getInstance().getQuizzes().add(_quiz);
         _results = _quiz.getResults();
         _numberWords = _quiz.numberWords();
 
@@ -162,10 +162,12 @@ public class SpellingTestController implements Initializable {
             case QUIZ_DONE:
                 outputResponse();
                 _quiz.logStatistics();
+                User.getInstance().getQuizzes().add(_quiz);
                 txtResponse.setDisable(true);
                 btnSubmit.setDisable(true);
                 btnReplay.setDisable(true);
                 cmbFestival.setDisable(true);
+                btnMenu.setText("View Results");
                 break;
             case NEW_WORD:
                 outputResponse();

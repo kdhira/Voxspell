@@ -22,6 +22,10 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="250.0">
                <children>
+                  <ComboBox fx:id="cmbTopics" minWidth="250.0" onAction="#cmbTopicsSelectionChanged">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin></ComboBox>
                   <Button fx:id="btnNewQuiz" minWidth="250.0" mnemonicParsing="false" onAction="#btnNewQuizPressed" text="%mainMenu.newQuiz" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -30,32 +34,27 @@
                         <Tooltip text="Start a new quiz in the current topic." />
                      </tooltip>
                   </Button>
-                  <ComboBox fx:id="cmbTopics" minWidth="250.0" onAction="#cmbTopicsSelectionChanged" VBox.vgrow="ALWAYS" />
-                  <BorderPane prefHeight="27.0" prefWidth="135.0">
-                     <left>
-                        <Button fx:id="btnViewStatistics" mnemonicParsing="false" onAction="#btnViewStatisticsPressed" prefHeight="27.0" prefWidth="110.0" text="%mainMenu.viewStatistics" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets top="2.0" />
-                           </BorderPane.margin>
-                           <tooltip>
-                              <Tooltip text="View information on how well you've done." />
-                           </tooltip>
-                        </Button>
-                     </left>
-                     <right>
-                        <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#btnSettingsPressed" prefHeight="27.0" prefWidth="80.0" text="%mainMenu.settings" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets top="2.0" />
-                           </BorderPane.margin>
-                           <tooltip>
-                              <Tooltip text="Change the settings of Voxspell." />
-                           </tooltip>
-                        </Button>
-                     </right>
+                  <Button fx:id="btnViewStatistics" minWidth="250.0" mnemonicParsing="false" onAction="#btnViewStatisticsPressed" text="%mainMenu.viewStatistics">
+                     <tooltip>
+                        <Tooltip text="View information on how well you've done." />
+                     </tooltip>
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </VBox.margin>
-                  </BorderPane>
+                  </Button>
+                  <Button fx:id="btnHistory" minWidth="250.0" mnemonicParsing="false" onAction="#btnHistoryPressed" text="%mainMenu.quizHistory">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnSettings" minWidth="250.0" mnemonicParsing="false" onAction="#btnSettingsPressed" text="%mainMenu.settings">
+                     <tooltip>
+                        <Tooltip text="Change the settings of Voxspell." />
+                     </tooltip>
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin>
+                  </Button>
                   <VBox alignment="CENTER">
                      <children>
                         <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#btnLogoutPressed" prefHeight="20.0" prefWidth="100.0" text="%mainMenu.logout">
@@ -63,7 +62,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </VBox.margin>
                            <tooltip>
-                              <Tooltip text="Quit Voxspell." />
+                              <Tooltip text="Logout of this user." />
                            </tooltip>
                         </Button>
                      </children>

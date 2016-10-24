@@ -3,6 +3,7 @@ package voxspell.gui;
 import voxspell.user.User;
 import voxspell.spell.Topic;
 import voxspell.festival.Festival;
+import voxspell.music.Music;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import javafx.scene.layout.AnchorPane;
 
@@ -59,16 +62,27 @@ public class SettingsController implements Initializable {
     @FXML
     void btnDeleteUserPressed(ActionEvent event) {
         //TODO: Show a confirmation dialog of some sort maybe?
-        User.deleteCurrentUser();
-        SceneSwitcher.getInstance().execute(SceneType.TITLE_MENU);
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Delete User");
+        confirmationDialog.setContentText("Are you sure you want to delete this user (" + User.getInstance().getName() + ")? You can not undo this.");
+        if (confirmationDialog.showAndWait().get() == ButtonType.OK) {
+            User.deleteCurrentUser();
+            Music.getInstance().stop();
+            SceneSwitcher.getInstance().execute(SceneType.TITLE_MENU);
+        }
     }
 
     @FXML
     void btnClearStatsPressed(ActionEvent event) {
         //TODO: Show a confirmation dialog of some sort maybe?
-        User.getInstance().getSelectedTopicSet().clear();
-        User.getInstance().setTopicLevel(0);
-        User.getInstance().getQuizzes().clear();
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Clear Statistics");
+        confirmationDialog.setContentText("Are you sure you want to clear the statistics for the current word list? You can not undo this.");
+        if (confirmationDialog.showAndWait().get() == ButtonType.OK) {
+            User.getInstance().getSelectedTopicSet().clear();
+            User.getInstance().setTopicLevel(0);
+            User.getInstance().getQuizzes().clear();
+        }
     }
 
     @FXML

@@ -29,11 +29,8 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </CheckBox>
-                  <TextField fx:id="txtNewUser" layoutX="149.0" layoutY="121.0" onAction="#txtNewUserEnterPressed" prefHeight="27.0" prefWidth="120.0">
+                  <TextField fx:id="txtNewUser" layoutX="149.0" layoutY="121.0" onAction="#txtNewUserEnterPressed" prefHeight="27.0" prefWidth="115.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

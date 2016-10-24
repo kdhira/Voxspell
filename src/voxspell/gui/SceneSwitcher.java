@@ -18,6 +18,7 @@ import java.util.Stack;
 import javafx.application.Platform;
 
 import java.io.IOException;
+import java.io.File;
 
 /**
  * Handles the changing of scenes in the application.
@@ -53,6 +54,8 @@ public class SceneSwitcher {
                 return tryRetrieve("RewardsMenu.fxml");
             case VIEW_STATISTICS:
                 return tryRetrieve("Statistics.fxml");
+            case HISTORY_MENU:
+                return tryRetrieve("HistoryMenu.fxml");
             case SETTINGS:
                 return tryRetrieve("Settings.fxml");
             case USER_MENU:
@@ -105,7 +108,9 @@ public class SceneSwitcher {
         Stage stage = getStage();
 
         // Set the new scene and show it.
-        stage.setScene(new Scene(getSceneFXML(newScene)));
+        Scene scene = new Scene(getSceneFXML(newScene));
+        scene.getStylesheets().add(getClass().getResource("styles/main.css").toExternalForm());
+        stage.setScene(scene);
         stage.show();
 
         // Return the stage, so perhap who called it can do more operations on it.
@@ -131,7 +136,9 @@ public class SceneSwitcher {
 
         ++_dialogDepth;
         pushStage(dialogStage);
-        dialogStage.setScene(new Scene(getSceneFXML(dialogScene)));
+        Scene scene = new Scene(getSceneFXML(dialogScene));
+        scene.getStylesheets().add(getClass().getResource("styles/main.css").toExternalForm());
+        dialogStage.setScene(scene);
         dialogStage.showAndWait();
         popStage();
         flushRequests();
