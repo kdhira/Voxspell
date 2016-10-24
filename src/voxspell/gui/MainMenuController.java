@@ -20,6 +20,10 @@ import javafx.scene.control.ComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
 public class MainMenuController implements Initializable {
 
     @FXML
@@ -48,6 +52,23 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private Button btnHistory;
+
+    @FXML
+    private Button btnHelp;
+
+    @FXML
+    void btnHelpPressed(ActionEvent event) {
+        //http://stackoverflow.com/questions/2546968/open-pdf-file-on-the-fly-from-a-java-application
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File("khir664_Voxspell_Manual.pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                // no application registered for PDFs
+                // TODO: Alert box here.
+            }
+        }
+    }
 
     @FXML
     void btnHistoryPressed(ActionEvent event) {
