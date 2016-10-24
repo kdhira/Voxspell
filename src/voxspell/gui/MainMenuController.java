@@ -24,6 +24,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class MainMenuController implements Initializable {
 
     @FXML
@@ -59,14 +62,15 @@ public class MainMenuController implements Initializable {
     @FXML
     void btnHelpPressed(ActionEvent event) {
         //http://stackoverflow.com/questions/2546968/open-pdf-file-on-the-fly-from-a-java-application
-        if (Desktop.isDesktopSupported()) {
-            try {
-                File myFile = new File("khir664_Voxspell_Manual.pdf");
-                Desktop.getDesktop().open(myFile);
-            } catch (IOException ex) {
-                // no application registered for PDFs
-                // TODO: Alert box here.
-            }
+        String command = "gnome-open";
+        if (System.getProperty("os.name").contains("Mac")) {
+            command = "open";
+        }
+        ProcessBuilder pb = new ProcessBuilder("bash", "-c", command + " khir664_Voxspell_Manual.pdf");
+        try {
+            pb.start();
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
