@@ -24,7 +24,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.File;
-
+/**
+ * Controls the User Menu.
+ * @author Kevin Hira.
+ */
 public class UserMenuController implements Initializable {
     @FXML
     private Label lblTitle;
@@ -48,10 +51,15 @@ public class UserMenuController implements Initializable {
     private ComboBox<String> cmbUsers;
 
     private int _userIndex = 0;
-
+    /**
+     * Handles the press of btnLogin.
+     */
     @FXML
     void btnLoginPressed(ActionEvent event) {
+        // Get the user to login as.
         User.switchToUser(cbxNewUser.isSelected()?txtNewUser.getText():cmbUsers.getValue());
+
+        // Check if the word list has been set or not.
         if (User.getInstance().getSelectedTopicSet() == null) {
             SceneSwitcher.getInstance().addSceneDialogRequest(SceneType.TOPIC_MENU);
         }
@@ -61,42 +69,63 @@ public class UserMenuController implements Initializable {
         ((Stage)btnLogin.getScene().getWindow()).close();
     }
 
+    /**
+     * Handles the press of btnBack.
+     */
     @FXML
     void btnBackPressed(ActionEvent event) {
         ((Stage)btnBack.getScene().getWindow()).close();
     }
 
+    /**
+     * Handles the check change of cbxNewUser.
+     */
     @FXML
     void cbxNewUserSelectedChanged(ActionEvent event) {
+        // Updates button characteristics.
         updateAbilities();
     }
 
+    /**
+     * Handles the enter press of txtNewUser.
+     */
     @FXML
     void txtNewUserEnterPressed(ActionEvent event) {
+        // Pres the login button.
         btnLogin.fire();
     }
 
+    /**
+     * Handles the selection change of cmbUsers.
+     */
     @FXML
     void cmbUsersSelectionChanged(ActionEvent event) {
+        // Update buttons.
         _userIndex = cmbUsers.getSelectionModel().getSelectedIndex();
         updateAbilities();
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        // Set title for stage.
         SceneSwitcher.getInstance().getStage().setTitle("Choose User - Voxspell");
         loadUsers();
 
-        // http://code.makery.ch/blog/javafx-2-event-handlers-and-change-listeners/
+        // Add change listener to text box, updates buttons.
         txtNewUser.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> o, String oldV, String newV) {
                 updateAbilities();
             }
         });
+
+
         updateAbilities();
 
     }
 
+    /**
+     * Sets which controls are enabled/disabled based on the state of the menu.
+     */
     private void updateAbilities() {
         if (cbxNewUser.isSelected()) {
             txtNewUser.setDisable(false);
@@ -118,6 +147,9 @@ public class UserMenuController implements Initializable {
         }
     }
 
+    /**
+     * Load in the users from serialised files.
+     */
     private void loadUsers() {
         ObservableList<String> users = FXCollections.observableArrayList();
         File saveDirectory = new File("saves/");

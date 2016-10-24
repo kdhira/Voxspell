@@ -22,6 +22,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the User and their preferences/statistics.
+ * @author Kevin Hira
+ */
 public class User implements Serializable {
     private static User _userInstance = null;
     public static final String SAVE_DIRECTORY = "saves/";
@@ -56,6 +60,10 @@ public class User implements Serializable {
         return _userInstance;
     }
 
+    /**
+     * Loads in a serialied user from fileName
+     * @param userFile file to load in.
+     */
     private static void load(File userFile) {
         try (ObjectInputStream oIS = new ObjectInputStream(new FileInputStream(userFile))) {
             _userInstance = (User)oIS.readObject();
@@ -75,6 +83,10 @@ public class User implements Serializable {
 
     }
 
+    /**
+     * Switch to the user specified.
+     * @param user user to switch to.
+     */
     public static void switchToUser(String user) {
         File userFile = new File("saves/" + user);
         if (userFile.exists()) {
@@ -97,6 +109,9 @@ public class User implements Serializable {
 
     }
 
+    /**
+     * Deletes the current user from the application.
+     */
     public static void deleteCurrentUser() {
         if (_userInstance != null) {
             try {
@@ -109,6 +124,9 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * Logs out of the current user.
+     */
     public static void logout() {
         if (_userInstance != null) {
             _userInstance.save();
@@ -116,6 +134,11 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * Adds a word list to the user.
+     * @param name name of word list to add.
+     * @return whether it was successful
+     */
     public boolean addWordlist(String name) {
         if (find(name) == null) {
             TopicSet newTopicSet = new TopicSet(name);
@@ -129,6 +152,11 @@ public class User implements Serializable {
         return false;
     }
 
+    /**
+     * Finds the topicSet, if it can.
+     * @param name topicSet to retrieve.
+     * @return the topicSet or null.
+     */
     private TopicSet find(String name) {
         for (TopicSet t : _wordlists) {
             if (t.getName() == name) {
@@ -138,6 +166,9 @@ public class User implements Serializable {
         return null;
     }
 
+    /**
+     * Saves the User to file.
+     */
     public void save() {
         File userFile = new File(_saveLocation);
         try (ObjectOutputStream oOS = new ObjectOutputStream(new FileOutputStream(userFile))) {

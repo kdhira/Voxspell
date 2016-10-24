@@ -28,6 +28,10 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Controls the Word List Menu.
+ * @author Kevin Hira.
+ */
 public class TopicMenuController implements Initializable {
     @FXML
     private Label lblTitle;
@@ -47,22 +51,33 @@ public class TopicMenuController implements Initializable {
     @FXML
     private Label lblAuthor;
 
+    /**
+     * Handles the press of btnSubmit.
+     */
     @FXML
     void btnSubmitPressed(ActionEvent event) {
+        // Update value in User instance, and switch to the main menu.
         User.getInstance().setTopic(cmbWordlists.getSelectionModel().getSelectedIndex(), 0);
         SceneSwitcher.getInstance().addChangeSceneRequest(SceneType.MENU);
 
         ((Stage)btnSubmit.getScene().getWindow()).close();
     }
 
+    /**
+     * Handles the press of btnBack.
+     */
     @FXML
     void btnBackPressed(ActionEvent event) {
+        // If the word list hasn't been set then go back to the user menu.
         if (User.getInstance().getSelectedTopicSet() == null) {
             SceneSwitcher.getInstance().addSceneDialogRequest(SceneType.USER_MENU);
         }
         ((Stage)btnBack.getScene().getWindow()).close();
     }
 
+    /**
+     * Handles the press of btnImport.
+     */
     @FXML
     void btnImportPressed(ActionEvent event) {
         retrieveNewList();
@@ -75,10 +90,15 @@ public class TopicMenuController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        // Set title and set up the combobox.
         SceneSwitcher.getInstance().getStage().setTitle("Choose Word List - Voxspell");
         setUpComboBoxes(0);
     }
 
+    /**
+     * Set up the combobox with word lists.
+     * @param init which index should be selected to start with.
+     */
     private void setUpComboBoxes(int init) {
         btnSubmit.setDisable(true);
         ObservableList<String> wordlists = FXCollections.observableArrayList();
@@ -98,6 +118,10 @@ public class TopicMenuController implements Initializable {
         }
     }
 
+    /**
+     * Opens a FileChooser and gets in a new word list that the user picks, if it s valid.
+     * @return if the retrieve was successful.
+     */
     private boolean retrieveNewList() {
         FileChooser fChooser = new FileChooser();
         fChooser.setTitle("Open Word List");

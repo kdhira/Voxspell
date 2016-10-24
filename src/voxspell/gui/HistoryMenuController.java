@@ -22,6 +22,10 @@ import javafx.scene.chart.PieChart;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Controls the History Menu.
+ * @author Kevin Hira.
+ */
 public class HistoryMenuController implements Initializable {
     @FXML
     private Label lblTitle;
@@ -43,18 +47,27 @@ public class HistoryMenuController implements Initializable {
 
     private Quiz _quiz;
 
+    /**
+     * Handles the selection change of cmbQuizzes.
+     */
     @FXML
     void cmbQuizzesSelectionChanged(ActionEvent event) {
+        // Reload data.
         loadPieChartData();
     }
 
+    /**
+     * Handles the press of btnBack.
+     */
     @FXML
     void btnBackPressed(ActionEvent event) {
+        // Switch to main menu.
         SceneSwitcher.getInstance().execute(SceneType.MENU);
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        // Get data for cmbQuizzes.
         cmbQuizzesSetUp();
         if (_quiz == null) {
             SceneSwitcher.getInstance().execute(SceneType.MENU);
@@ -63,6 +76,9 @@ public class HistoryMenuController implements Initializable {
 
     }
 
+    /**
+     * Sets up the combobox elements for the combobox.
+     */
     private void cmbQuizzesSetUp() {
         ObservableList<String> quizzes = FXCollections.observableArrayList();
 
@@ -76,9 +92,14 @@ public class HistoryMenuController implements Initializable {
         loadPieChartData();
     }
 
+    /**
+     * Builds the pie chart data. Also sets the labels' text.
+     */
     private void loadPieChartData() {
         _quiz = _quiz = User.getInstance().getQuizzes().get(cmbQuizzes.getSelectionModel().getSelectedIndex());
         pChart.setLegendVisible(false);
+
+        // Get data from quiz.
         Map<WordResult, Integer> data =  _quiz.retrieveTotals();
         ObservableList<PieChart.Data> pcData = FXCollections.observableArrayList();
         for (WordResult wR : data.keySet()) {
@@ -87,6 +108,7 @@ public class HistoryMenuController implements Initializable {
 
         pChart.setData(pcData);
 
+        // Colour the pie chart.
         int offset = 0;
         for (PieChart.Data pcD : pChart.getData()) {
             String colour = "#FFFFFF".replace("F", String.valueOf(offset%7+4));

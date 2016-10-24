@@ -36,6 +36,10 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Controls the Spelling Quiz Interface.
+ * @author Kevin Hira.
+ */
 public class SpellingTestController implements Initializable {
 
     @FXML
@@ -76,19 +80,26 @@ public class SpellingTestController implements Initializable {
     private Quiz _quiz;
     private LinkedList<SpellResult> _results;
 
-    private int _nCorrect;
 
     private Text currentOut;
 
+    /**
+     * Handles the press of btnReplay.
+     */
     @FXML
     void btnReplayPressed(ActionEvent event) {
+        // Respeak word, return focus to textfield.
         speakWord(1, true);
         txtResponse.requestFocus();
     }
 
+    /**
+     * Handles the press of btnSubmit.
+     */
     @FXML
     void btnSubmitPressed(ActionEvent event) {
         if (!txtResponse.getText().equals("")) {
+            // Query the quiz and update elements.
             queryQuiz();
             pgiWheel.setProgress(_quiz.getCompletion());
             pgbProgress.setProgress(_quiz.getAccuracy());
@@ -98,9 +109,15 @@ public class SpellingTestController implements Initializable {
         txtResponse.requestFocus();
     }
 
+    /**
+     * Handles the press of btnMenu.
+     */
     @FXML
     void btnMenuPressed(ActionEvent event) {
+        // Close festival.
         Festival.getInstance().closeFestival();
+
+        // Depending on the text of the button, got to the main menu or results menu.
         switch (btnMenu.getText()) {
             case "Back to Menu":
                 SceneSwitcher.getInstance().execute(SceneType.MENU);
@@ -113,20 +130,23 @@ public class SpellingTestController implements Initializable {
         }
     }
 
+    /**
+     * Handles the selection change of cmbFestival.
+     */
     @FXML
     void cmbFestivalSelectionChanged(ActionEvent event) {
+        // Change voice.
         Festival.getInstance().changeVoice(cmbFestival.getValue());
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        _nCorrect = 0;
+        // Set up festival and festival changer.
         _numberWords = User.getInstance().getWordsPerQuiz();
-
         Festival.getInstance().openFestival();
         cmbFestivalSetUp();
 
-        // http://code.makery.ch/blog/javafx-2-event-handlers-and-change-listeners/
+        // Added change listener to textfield, only allow certain characters to be entered.
         txtResponse.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> o, String oldV, String newV) {
                 if (!newV.equals("") && !newV.matches("([A-z][a-z']*)( ([A-z][a-z']*)?)*")) {
@@ -135,12 +155,14 @@ public class SpellingTestController implements Initializable {
             }
         });
 
+        // Add change listener to textflow, scroll to the top.
         tflResults.getChildren().addListener(new ListChangeListener<Node>() {
             public void onChanged(ListChangeListener.Change<? extends Node> c) {
                 scrollToTop();
             }
         });
 
+        // Build quiz object from words in topic.
         Topic targetTopic = User.getInstance().targetTopic();
         _quiz = new Quiz(targetTopic, _numberWords, false);
         _results = _quiz.getResults();
@@ -152,6 +174,9 @@ public class SpellingTestController implements Initializable {
         promptWord();
     }
 
+    /**
+     * Query the quiz object and handle the response.
+     */
     private void queryQuiz() {
         switch (_quiz.doWork(txtResponse.getText())) {
             case NO_CHANGE:
@@ -176,18 +201,19 @@ public class SpellingTestController implements Initializable {
         }
     }
 
+    /**
+     * Update the text flow when the quiz moves to the next word.
+     */
     private void outputResponse() {
         SpellResult r = _results.getLast();
         switch (r.getResult()) {
             case MASTERED:
                 Festival.getInstance().speak("Correct!");
                 currentOut.setText(_prompt + " Correct (" + r.getName() + ").\n");
-                ++_nCorrect;
                 break;
             case FAULTED:
                 Festival.getInstance().speak("Correct!");
                 currentOut.setText(_prompt + " Faulted (" + r.getName() + ").\n");
-                ++_nCorrect;
                 break;
             case FAILED:
                 Festival.getInstance().speak("Incorrect...");
@@ -196,6 +222,9 @@ public class SpellingTestController implements Initializable {
         }
     }
 
+    /**
+     * Write out a prompt to spell a word.
+     */
     private void promptWord() {
         tflResults.getChildren().add(0, currentOut = new Text());
         _prompt = "Spell word " + (_quiz.currentIndex()+1) + "/" + _numberWords + ":";
@@ -203,6 +232,11 @@ public class SpellingTestController implements Initializable {
         speakWord(1, false);
     }
 
+    /**
+     * Speak the current word.
+     * @param quantity the amount of times to speak the word.
+     * @param whether to say it slower or not.
+     */
     private void speakWord(int quantity, boolean goSlower) {
         boolean shortWord = _quiz.currentWord().length() <= 4;
         if (goSlower) {
@@ -221,13 +255,20 @@ public class SpellingTestController implements Initializable {
         }
     }
 
+    /**
+     * Scrolls to the top of the text flow.
+     */
     private void scrollToTop() {
         spnFlowScroll.setVvalue(0.00f);
     }
 
+    /**
+     * Build data for cmbFestival.
+     */
     private void cmbFestivalSetUp() {
         ObservableList<String> voices = FXCollections.observableArrayList();
 
+        // Get voices from Festival instance.
         for (String v : Festival.getInstance().getVoices().keySet()) {
             voices.add(v);
         }

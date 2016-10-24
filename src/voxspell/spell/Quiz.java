@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Date;
 
+/**
+ * Class that represents a quiz.
+ * @author Kevin Hira.
+ */
 public class Quiz implements Serializable {
     private Date _quizDate;
     private List<Word> _quizWords;
@@ -42,6 +46,10 @@ public class Quiz implements Serializable {
         _isFinised = numberWords() <= 0;
     }
 
+    /**
+     * Takes a query and handles it accordingly.
+     * @param query the users spelled answer.
+     */
     public QuizFlag doWork(String query) {
         if (_isFinised) {
             return QuizFlag.ALREADY_DONE;
@@ -67,30 +75,48 @@ public class Quiz implements Serializable {
             return QuizFlag.NO_CHANGE;
         }
 
-        // return QuizFlag.INVALID;
-
     }
 
+    /**
+     * Gets the number or words in the quiz.
+     */
     public int numberWords() {
         return _quizWords.size();
     }
 
+    /**
+     * Gets the current word's index being asked.
+     */
     public int currentIndex() {
         return _wordIndex;
     }
 
+    /**
+     * Gets the current word's index being asked.
+     */
     public String currentWord() {
         return _quizWords.get(_wordIndex).toString();
     }
 
+    /**
+     * Returns the results of the quiz.
+     */
     public LinkedList<SpellResult> getResults() {
         return _results;
     }
 
+    /**
+     * Checks the user inputted word against the answer.
+     * @param word the users answer.
+     * @return whether they match or not.
+     */
     private boolean checkWord(String word) {
         return _quizWords.get(_wordIndex).toString().toLowerCase().equals(word.toLowerCase());
     }
 
+    /**
+     * Handles switching to the next word in the quiz.
+     */
     private boolean nextWord() {
         WordResult wR = WordResult.parse(_wordFlag);
         if (wR == WordResult.MASTERED) {
@@ -105,6 +131,9 @@ public class Quiz implements Serializable {
         return true;
     }
 
+    /**
+     * Logs the quiz results to the overall statistics.
+     */
     public void logStatistics() {
         if (_quizWords.size() == _results.size()) {
             for (int i = 0; i < _quizWords.size(); ++i) {
@@ -113,6 +142,9 @@ public class Quiz implements Serializable {
         }
     }
 
+    /**
+     * Retrieves the total mastered, failed, faulted counts for the quiz.
+     */
     public Map<WordResult, Integer> retrieveTotals() {
         Map<WordResult, Integer> totals = new HashMap<WordResult, Integer>();
         for (SpellResult sR : _results) {
@@ -125,18 +157,30 @@ public class Quiz implements Serializable {
         return totals;
     }
 
+    /**
+     * Gets the accuracy of the quiz.
+     */
     public double getAccuracy() {
         return _wordIndex == 0 ? 0.0 : _nCorrect / (double)_wordIndex;
     }
 
+    /**
+     * Gets the completion of the quiz.
+     */
     public double getCompletion() {
         return _wordIndex / (double)numberWords();
     }
 
+    /**
+     * Gets the topic this quiz belongs to.
+     */
     public Topic getTopic() {
         return _topic;
     }
 
+    /**
+     * Gets the date/time this quiz was done.
+     */
     public Date getDateCompleted() {
         return _quizDate;
     }

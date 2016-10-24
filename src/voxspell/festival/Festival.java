@@ -16,8 +16,8 @@ import javafx.concurrent.Task;
 /**
  * Festival handles concurrently calling festival schemes to say text and change
  * voice which is used to help the user with the quiz.
- * Adapted/based on KH Assignment 2.
- * @author JC KH
+ * Adapted/based on KH Assignment 2 and JC KH Assignment 3.
+ * @author Kevin Hira
  */
 public class Festival {
 
@@ -25,7 +25,6 @@ public class Festival {
     private FestivalWorker _festivalService;
 
     private Map<String, String> _festivalVoices;
-    // private String _currentVoice;
 
     /**
      * The Festival constructor sets up a new Service that handles the background
@@ -71,7 +70,7 @@ public class Festival {
 
         /**
          * Generates a new background task to add schemes to festival.
-         * @return
+         * @return a task to be run.
          */
         @Override
         protected Task<Void> createTask() {
@@ -136,6 +135,10 @@ public class Festival {
         changeVoice(User.getInstance().getFestivalVoice());
     }
 
+    /**
+     * Changes the duration of the festival speech
+     * @param stretch the new stretch duration.
+     */
     public void changeStretch(String stretch) {
         System.out.println("(Parameter.set 'Duration_Stretch " + stretch + ")");
         _festivalService.setText("(Parameter.set 'Duration_Stretch " + stretch + ")");

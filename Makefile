@@ -19,4 +19,4 @@ clean:
 	rm -r bin/*
 
 publish:
-	COPYFILE_DISABLE=1 tar --exclude=".DS_Store" -cf release/Voxspell-${version}.tar resources/ src/ README.txt -C dist Voxspell.jar
+	COPYFILE_DISABLE=1 tar --exclude=".DS_Store" -cf release/Voxspell-${version}.tar khir664_Voxspell_Manual.pdf khir664_Report.pdf resources/ src/ README.txt -C dist Voxspell.jar

@@ -1,5 +1,9 @@
 package voxspell.spell;
 
+/**
+ * Enumeration for the different ways the spelling outcome can go.
+ * @author Kevin Hira.
+ */
 public enum WordResult {
     MASTERED("Mastered"), FAULTED("Faulted"), FAILED("Failed"), INVALID("Invalid");
 

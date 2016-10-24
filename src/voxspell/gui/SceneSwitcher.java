@@ -45,7 +45,10 @@ public class SceneSwitcher {
         _dialogDepth = 0;
         _stages = new Stack<Stage>();
     }
-
+    /**
+     * Retrieves a scene from a file.
+     * @param newScene scene to retrieve.
+     */
     private Parent getSceneFXML(SceneType newScene) {
         switch (newScene) {
             case NEW_QUIZ:
@@ -74,9 +77,14 @@ public class SceneSwitcher {
         // return null;
     }
 
+    /**
+     * Try and load the fxml into a Parent object.
+     * @param fxml location of fxml document.
+     */
     private Parent tryRetrieve(String fxml) {
         try {
             FXMLLoader fLoader = new FXMLLoader();
+            // Set the resourse bundle and location
             fLoader.setResources(getResources());
             fLoader.setLocation(getClass().getResource(fxml));
 
@@ -88,18 +96,35 @@ public class SceneSwitcher {
         }
     }
 
+    /**
+     * Push a stage to the Stage stack.
+     * @param s the stage to push.
+     */
     public void pushStage(Stage s) {
         _stages.push(s);
     }
 
+    /**
+     * Peek at top stage on Stage stack.
+     * @return the top of the stack.
+     */
     public Stage getStage() {
         return _stages.peek();
     }
 
+    /**
+    * Pop the top stage on Stage stack.
+    * @return the top of the stack before pop.
+    */
     public Stage popStage() {
         return _stages.pop();
     }
 
+    /**
+     * Switch scenes to newScene.
+     * @param newScene the scene to switch to.
+     * @return the stage scene is attached to.
+     */
     public Stage execute(SceneType newScene) {
         if (newScene == SceneType.EXIT) {
             Platform.exit();
@@ -118,16 +143,24 @@ public class SceneSwitcher {
         return stage;
     }
 
+    /**
+     * Close the stage.
+     */
     public void close() {
         getStage().close();
     }
 
-    // http://stackoverflow.com/questions/22166610/how-to-create-a-popup-windows-in-javafx
+    /**
+     * Show a dialog with the selected scene. Opens a new stage and shows it as a dialog.
+     * @param dialogScene the scene to create a dialog off.
+     */
     public void showDialog(SceneType dialogScene) {
         if (dialogScene == SceneType.EXIT) {
             Platform.exit();
             return;
         }
+
+        // Set up new stage
         Stage dialogStage = new Stage();
 
         dialogStage.initOwner(getStage());
@@ -135,17 +168,22 @@ public class SceneSwitcher {
 
         dialogStage.setResizable(false);
 
+        // Push stage on to stack, and load in scene/
         ++_dialogDepth;
         pushStage(dialogStage);
         Scene scene = new Scene(getSceneFXML(dialogScene));
         scene.getStylesheets().add(getClass().getResource("styles/main.css").toExternalForm());
         dialogStage.setScene(scene);
+        // Show stage and wait.
         dialogStage.showAndWait();
+        // After it closes, pop stage off stack, and flush any request for scene changes.
         popStage();
         flushRequests();
         --_dialogDepth;
     }
-
+    /**
+     * Flushes through any scene change requests that may have happened during a dialog.
+     */
     private void flushRequests() {
         if (_dialogDepth > 1) {
             return;
@@ -164,20 +202,36 @@ public class SceneSwitcher {
         _requestTypes.clear();
     }
 
+    /**
+     * Add a scene change request.
+     * @param requestedScene scene to add.
+     */
     public void addChangeSceneRequest(SceneType requestedScene) {
         addToQueue(requestedScene, false);
     }
 
+    /**
+     * Add a scene dialog request.
+     * @param requestedScene scene to add.
+     */
     public void addSceneDialogRequest(SceneType requestedScene) {
         addToQueue(requestedScene, true);
 
     }
 
+    /**
+     * Add requested scene to the queue.
+     * @param s scene to add.
+     * @param isDialog whether the scene is a dialog or not.
+     */
     private void addToQueue(SceneType s, boolean isDialog) {
         _requestQueue.add(s);
         _requestTypes.add(isDialog);
     }
 
+    /**
+     * Get the resource bundle from file.
+     */
     public ResourceBundle getResources() {
         Locale locale = User.getInstance() != null ? User.getInstance().getLocale() : new Locale("en", "EN");
         return ResourceBundle.getBundle("voxspell.properties.lang", locale);

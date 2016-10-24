@@ -14,6 +14,10 @@ import javafx.application.Platform;
 import java.io.File;
 import java.util.ResourceBundle;
 
+/**
+ * Entry point into Voxspell.
+ * @author Kevin Hira.
+ */
 public class Voxspell extends Application {
     public void start(Stage stage) throws Exception {
         // Save the stage reference.

@@ -25,6 +25,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Controls the Statistics Menu.
+ * @author Kevin Hira.
+ */
 public class StatisticsController implements Initializable {
     @FXML
     private Label lblTitle;
@@ -56,23 +60,37 @@ public class StatisticsController implements Initializable {
     @FXML
     private ComboBox<String> cmbTopics;
 
+    /**
+     * Handles the selection change of cmbTopics.
+     */
     @FXML
     void cmbTopicSelectionChanged(ActionEvent event) {
+        // Reload the words for the new topic.
         loadWords();
     }
 
+    /**
+     * Handles the press of btnMenu.
+     */
     @FXML
     void btnMenuPressed(ActionEvent event) {
+        // Return to the main menu.
         SceneSwitcher.getInstance().execute(SceneType.MENU);
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        // Add the user to the label, then load topics into combobox.
         lblUser.setText("User: " + User.getInstance().getName());
         loadTopics();
+
+        // Load the words for the chosen topic to start off.
         loadWords();
     }
 
+    /**
+     * Load in the words into the table for a topic.
+     */
     private void loadWords() {
         int index = cmbTopics.getSelectionModel().getSelectedIndex();
 
@@ -92,6 +110,9 @@ public class StatisticsController implements Initializable {
         tclFailed.setCellValueFactory(new PropertyValueFactory<Word, Integer>("failed"));
     }
 
+    /**
+     * Load in the topics from the topicSet into the combobox.
+     */
     private void loadTopics() {
         TopicSet selectedTopicSet = User.getInstance().getSelectedTopicSet();
         ObservableList<String> topics = FXCollections.observableArrayList();

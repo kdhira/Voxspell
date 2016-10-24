@@ -2,6 +2,10 @@ package voxspell.spell;
 
 import java.io.Serializable;
 
+/**
+ * Represents a word, and stores the statistics about it.
+ * @author Kevin Hira.
+ */
 public class Word implements Serializable {
     private final String _name;
     private Integer _mastered;
@@ -45,6 +49,10 @@ public class Word implements Serializable {
         return _mastered == 0 && _faulted == 0 && _failed == 0;
     }
 
+    /**
+     * Increments one of the totals based on the result.
+     * @param result the result of the word attempt in a quiz.
+     */
     public void logStatistic(WordResult result) {
         switch (result) {
             case MASTERED:

@@ -14,6 +14,10 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents a whole word list.
+ * @author Kevin Hira.
+ */
 public class TopicSet implements Serializable {
     private String _fileName;
     private transient List<Topic> _topicProgression;
@@ -24,6 +28,10 @@ public class TopicSet implements Serializable {
         _topicPool = new HashMap<String, Topic>();
     }
 
+    /**
+     * Builds the topicSet from file. Everything already existing won't change, but new words can be added this way.
+     * @return if the operation was successful.
+     */
     public boolean buildTopicSet() {
         _topicProgression = new ArrayList<Topic>();
 
@@ -58,12 +66,21 @@ public class TopicSet implements Serializable {
         return true;
     }
 
+    /**
+     * Adds a topic to the progression.
+     * @param t topic to add.
+     */
     private void addTopicToProgression(Topic t) {
         if (t != null) {
             _topicProgression.add(t);
         }
     }
 
+    /**
+     * Gets the topic if it exists, or creates one.
+     * @param topicName topic to retrieve.
+     * @return the topic.
+     */
     private Topic getOrCreateTopic(String topicName) {
         Topic t = null;
         if (topicName != null && topicName != "") {
@@ -72,6 +89,11 @@ public class TopicSet implements Serializable {
         return t;
     }
 
+    /**
+     * Add a topic to the topicSet.
+     * @param topicName topic to retrieve.
+     * @return the topic.
+     */
     public Topic add(String topicName) {
         Topic t;
         if ((t = get(topicName)) == null) {
@@ -80,10 +102,19 @@ public class TopicSet implements Serializable {
         return t;
     }
 
+    /**
+     * Get the topic at certain position.
+     * @param i position to get from.
+     * @return topic at the position.
+     */
     public Topic atPosition(int i) {
         return _topicProgression.get(i);
     }
 
+    /**
+     * Gets the size of the topic progression
+     * @return the size of the topic progression.
+     */
     public int size() {
         return _topicProgression.size();
     }
@@ -97,12 +128,18 @@ public class TopicSet implements Serializable {
         return null;
     }
 
+    /**
+     * Gets the name of the word list (the file).
+     * @return the filename.
+     */
     public String getName() {
         return _fileName;
     }
 
+    /**
+     * Clears the topicSet and rebuilds from scratch.
+     */
     public void clear() {
-        //TODO: More checking here. What if user modifies wordlist (clears it) in the txt file, then goes clear statistics?
         _topicProgression.clear();
         _topicPool.clear();
         buildTopicSet();

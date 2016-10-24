@@ -20,6 +20,10 @@ import javafx.scene.chart.PieChart;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Controls the Results Menu.
+ * @author Kevin Hira.
+ */
 public class ResultMenuController implements Initializable {
     @FXML
     private Label lblTitle;
@@ -41,18 +45,27 @@ public class ResultMenuController implements Initializable {
 
     private Quiz _quiz;
 
+    /**
+     * Handles the press of btnReward.
+     */
     @FXML
     void btnRewardPressed(ActionEvent event) {
+        // Switch to reward menu.
         SceneSwitcher.getInstance().showDialog(SceneType.REWARDS_MENU);
     }
 
+    /**
+     * Handles the press of btnBack.
+     */
     @FXML
     void btnBackPressed(ActionEvent event) {
+        // Go back to the main menu.
         SceneSwitcher.getInstance().execute(SceneType.MENU);
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        // Get the last quiz and load the pie chart data for it.
         _quiz = User.getInstance().getLastQuiz();
         loadPieChartData();
         lblLevel.setText(_quiz.getTopic().getName());
@@ -62,8 +75,13 @@ public class ResultMenuController implements Initializable {
         }
     }
 
+    /**
+     * Builds the pie chart data.
+     */
     private void loadPieChartData() {
         pChart.setLegendVisible(false);
+
+        // Get data from quiz.
         Map<WordResult, Integer> data =  _quiz.retrieveTotals();
         ObservableList<PieChart.Data> pcData = FXCollections.observableArrayList();
         for (WordResult wR : data.keySet()) {
@@ -72,14 +90,12 @@ public class ResultMenuController implements Initializable {
 
         pChart.setData(pcData);
 
+        // Colour the pie chart.
         int offset = 0;
         for (PieChart.Data pcD : pChart.getData()) {
             String colour = "#FFFFFF".replace("F", String.valueOf(offset%7+4));
             pcD.getNode().setStyle("-fx-pie-color: " + colour + ";");
             offset+=60;
         }
-
-
-
     }
 }
