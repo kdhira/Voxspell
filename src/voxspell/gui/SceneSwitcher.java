@@ -19,6 +19,8 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Handles the changing of scenes in the application.
@@ -81,8 +83,7 @@ public class SceneSwitcher {
             return fLoader.load();
         }
         catch (IOException e) {
-            System.err.println("Could not load \"" + fxml + "\"");
-            e.printStackTrace();
+            Logger.getLogger(SceneSwitcher.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }

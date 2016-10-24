@@ -19,6 +19,8 @@ import java.io.ObjectInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class User implements Serializable {
     private static User _userInstance = null;
@@ -59,7 +61,7 @@ public class User implements Serializable {
             _userInstance = (User)oIS.readObject();
         }
         catch (IOException|ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, e);
         }
         if (_userInstance != null) {
             List<TopicSet> oldTopicSets = new ArrayList<TopicSet>(_userInstance._wordlists);
@@ -101,7 +103,7 @@ public class User implements Serializable {
                 new File(_userInstance._saveLocation).delete();
             }
             catch (Exception e) {
-
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, e);
             }
             _userInstance = null;
         }
@@ -142,7 +144,7 @@ public class User implements Serializable {
             oOS.writeObject(_userInstance);
         }
         catch (IOException e) {
-
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 

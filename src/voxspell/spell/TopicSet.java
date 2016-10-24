@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TopicSet implements Serializable {
     private String _fileName;
@@ -49,7 +51,7 @@ public class TopicSet implements Serializable {
             addTopicToProgression(currentTopic);
         }
         catch (IOException e) {
-            System.err.println("IOError.");
+            Logger.getLogger(TopicSet.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
 

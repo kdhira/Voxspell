@@ -22,6 +22,8 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -113,6 +115,7 @@ public class TopicMenuController implements Initializable {
                 }
             }
             catch (IOException e) {
+                Logger.getLogger(TopicMenuController.class.getName()).log(Level.SEVERE, null, e);
                 return false;
             }
         }
