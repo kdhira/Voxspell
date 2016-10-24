@@ -67,7 +67,7 @@ public class HistoryMenuController implements Initializable {
         ObservableList<String> quizzes = FXCollections.observableArrayList();
 
         for (Quiz q : User.getInstance().getQuizzes()) {
-            quizzes.add(q.getTopic().getName()+ "(" + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(q.getDateCompleted()) + ")");
+            quizzes.add(q.getTopic().getName()+ " (" + new SimpleDateFormat("HH:mm:ss dd/MM/yyyy").format(q.getDateCompleted()) + ")");
         }
 
         cmbQuizzes.setItems(quizzes);
