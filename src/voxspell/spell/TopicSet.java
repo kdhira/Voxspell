@@ -44,13 +44,11 @@ public class TopicSet implements Serializable {
 
                     currentTopic = getOrCreateTopic(line.substring(1));
                     if (currentTopic == null) {
-                        System.err.println("Somehow could not create topic " + line + ".");
                         return false;
                     }
                     continue;
                 }
                 else if (currentTopic == null) {
-                    System.err.println("Line \"" + line + "\" or above should be topic header, but isn't.");
                     return false;
                 }
                 currentTopic.add(line);

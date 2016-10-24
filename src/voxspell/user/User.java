@@ -237,7 +237,6 @@ public class User implements Serializable {
 
     public void setFestivalVoice(String voice) {
         if (!Festival.getInstance().getVoices().containsKey(voice)) {
-            System.err.println(voice + " not a voice.");
             return;
         }
 

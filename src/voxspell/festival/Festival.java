@@ -94,7 +94,6 @@ public class Festival {
             BufferedWriter w = new BufferedWriter(new OutputStreamWriter(stream));
             w.write(text);
             w.newLine();
-            //System.out.println(text);
             w.flush();
         }
 
@@ -116,7 +115,6 @@ public class Festival {
      * @param text The text to sent.
      */
     public synchronized void speak(String text) {
-        System.out.println("(SayText \"" + text + "\")");
         _festivalService.setText("(SayText \"" + text + "\")");
         new Thread(_festivalService.createTask()).start();
 
@@ -126,7 +124,6 @@ public class Festival {
      * Wraps voice text into scheme and sends it to the FestivalWorker.
      */
     public void changeVoice(String voice) {
-        System.out.println("(" + _festivalVoices.get(voice) + ")");
         _festivalService.setText("(" + _festivalVoices.get(voice) + ")");
         new Thread(_festivalService.createTask()).start();
     }
@@ -140,7 +137,6 @@ public class Festival {
      * @param stretch the new stretch duration.
      */
     public void changeStretch(String stretch) {
-        System.out.println("(Parameter.set 'Duration_Stretch " + stretch + ")");
         _festivalService.setText("(Parameter.set 'Duration_Stretch " + stretch + ")");
         new Thread(_festivalService.createTask()).start();
     }
@@ -159,7 +155,6 @@ public class Festival {
     public void closeFestival() {
         if (_festivalService != null && _festivalService._process != null) {
             _festivalService._process.destroy();
-            System.out.println("Festival subprocess destroyed.");
         }
         _festivalService = null;
     }
@@ -170,7 +165,6 @@ public class Festival {
     public void openFestival() {
         closeFestival();
         _festivalService = new FestivalWorker();
-        System.out.println("Festival subprocess spawned.");
         changeVoice();
     }
 

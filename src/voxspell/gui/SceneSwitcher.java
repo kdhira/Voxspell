@@ -70,7 +70,6 @@ public class SceneSwitcher {
             case TITLE_MENU:
                 return tryRetrieve("TitleMenu.fxml");
             default:
-                System.err.println("Not implemented.");
             case MENU:
                 return tryRetrieve("MainMenu.fxml");
         }
