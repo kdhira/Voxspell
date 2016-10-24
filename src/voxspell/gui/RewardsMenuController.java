@@ -54,6 +54,7 @@ public class RewardsMenuController implements Initializable {
 
     @FXML
     void btnBackPressed(ActionEvent event) {
+        mediaPlayer.stop();
         ((Stage)btnBack.getScene().getWindow()).close();
     }
 
