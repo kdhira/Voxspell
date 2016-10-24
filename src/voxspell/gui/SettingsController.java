@@ -121,6 +121,8 @@ public class SettingsController implements Initializable {
                 User.getInstance().setWordsPerQuiz(sprWordsPerQuiz.getValue());
             }
         });
+
+        cboMute.setSelected(Music.getInstance().isMuted());
     }
 
     private void cmbFestivalSetUp() {

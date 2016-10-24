@@ -44,4 +44,8 @@ public class Music {
         _userMuted = muted;
     }
 
+    public boolean isMuted() {
+        return _userMuted;
+    }
+
 }
