@@ -13,9 +13,15 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnMenu" layoutX="149.0" layoutY="347.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
+      <Button fx:id="btnMenu" layoutX="149.0" layoutY="347.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu">
+         <tooltip>
+            <Tooltip text="Return to the main menu." />
+         </tooltip></Button>
       <Label layoutX="16.0" layoutY="64.0" text="Festival Voice:" />
-      <ComboBox fx:id="cmbFestival" layoutX="16.0" layoutY="81.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0" />
+      <ComboBox fx:id="cmbFestival" layoutX="16.0" layoutY="81.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0">
+         <tooltip>
+            <Tooltip text="Select a voice to use." />
+         </tooltip></ComboBox>
       <Label layoutX="16.0" layoutY="125.0" text="Words per Quiz:" />
       <Pane layoutX="16.0" layoutY="142.0" prefHeight="35.0" prefWidth="75.0">
           <children>
@@ -26,8 +32,22 @@
               </Spinner>
           </children>
       </Pane>
-      <Button fx:id="btnClearStats" layoutX="16.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnClearStatsPressed" prefHeight="27.0" prefWidth="150.0" text="Clear Statistics" />
-      <Button fx:id="btnChangeWordList" layoutX="16.0" layoutY="223.0" mnemonicParsing="false" onAction="#btnChangeWordListPressed" prefHeight="27.0" prefWidth="150.0" text="Change Word List" />
-      <Button fx:id="btnDeleteUser" layoutX="16.0" layoutY="258.0" mnemonicParsing="false" onAction="#btnDeleteUserPressed" prefHeight="27.0" prefWidth="150.0" text="Delete User" />
+      <Button fx:id="btnClearStats" layoutX="16.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnClearStatsPressed" prefHeight="27.0" prefWidth="150.0" text="Clear Statistics">
+         <tooltip>
+            <Tooltip text="Clears the statistics for the current wordlist." />
+         </tooltip></Button>
+      <Button fx:id="btnChangeWordList" layoutX="16.0" layoutY="223.0" mnemonicParsing="false" onAction="#btnChangeWordListPressed" prefHeight="27.0" prefWidth="150.0" text="Change Word List">
+         <tooltip>
+            <Tooltip text="Change the current wordlist." />
+         </tooltip></Button>
+      <Button fx:id="btnDeleteUser" layoutX="16.0" layoutY="258.0" mnemonicParsing="false" onAction="#btnDeleteUserPressed" prefHeight="27.0" prefWidth="150.0" text="Delete User">
+         <tooltip>
+            <Tooltip text="Delete this user profile." />
+         </tooltip></Button>
+      <CheckBox fx:id="cboMute" layoutX="18.0" layoutY="294.0" mnemonicParsing="false" onAction="#cboMuteCheckedChanged" prefHeight="18.0" prefWidth="150.0" text="Mute Sounds">
+         <tooltip>
+            <Tooltip text="Mute the main menu sounds." />
+         </tooltip>
+      </CheckBox>
    </children>
 </AnchorPane>

@@ -22,6 +22,9 @@
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Select from existing users." />
+               </tooltip>
             </ComboBox>
             <HBox alignment="CENTER" layoutX="51.0" layoutY="121.0">
                <children>
@@ -29,11 +32,17 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Tick this to create a new user." />
+                     </tooltip>
                   </CheckBox>
                   <TextField fx:id="txtNewUser" layoutX="149.0" layoutY="121.0" onAction="#txtNewUserEnterPressed" prefHeight="27.0" prefWidth="115.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Enter a new user name." />
+                     </tooltip>
                   </TextField>
                </children>
             </HBox>

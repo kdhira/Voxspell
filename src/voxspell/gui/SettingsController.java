@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -52,6 +53,20 @@ public class SettingsController implements Initializable {
 
     @FXML
     private Button btnChangeWordList;
+
+    @FXML
+    private CheckBox cboMute;
+
+    @FXML
+    void cboMuteCheckedChanged(ActionEvent event) {
+        Music.getInstance().setMute(cboMute.isSelected());
+        if (cboMute.isSelected()) {
+            Music.getInstance().stop();
+        }
+        else {
+            Music.getInstance().play();
+        }
+    }
 
     @FXML
     void btnChangeWordListPressed(ActionEvent event) {

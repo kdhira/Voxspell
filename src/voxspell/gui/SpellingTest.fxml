@@ -17,10 +17,16 @@
             </TextField>
             <BorderPane prefHeight="4.0" prefWidth="262.0">
                 <left>
-                   <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#btnSubmitPressed" text="Submit Answer" BorderPane.alignment="CENTER" />
+                   <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#btnSubmitPressed" text="Submit Answer" BorderPane.alignment="CENTER">
+                     <tooltip>
+                        <Tooltip text="Submit your answer." />
+                     </tooltip></Button>
                 </left>
                <right>
-                  <Button fx:id="btnReplay" mnemonicParsing="false" onAction="#btnReplayPressed" text="Replay Word" BorderPane.alignment="CENTER" />
+                  <Button fx:id="btnReplay" mnemonicParsing="false" onAction="#btnReplayPressed" text="Replay Word" BorderPane.alignment="CENTER">
+                     <tooltip>
+                        <Tooltip text="Listen to the current word again." />
+                     </tooltip></Button>
                </right>
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -30,6 +36,9 @@
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Your current accuracy." />
+               </tooltip>
             </ProgressBar>
             <ScrollPane fx:id="spnFlowScroll" fitToHeight="true" fitToWidth="true" prefViewportHeight="180.0" prefViewportWidth="246.0" style="-fx-background-color: white;">
                <content>
@@ -45,14 +54,23 @@
             </ScrollPane>
          </children>
       </VBox>
-      <Button fx:id="btnMenu" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu" />
-      <ProgressIndicator fx:id="pgiWheel" layoutX="353.0" layoutY="341.0" progress="0.0" />
+      <Button fx:id="btnMenu" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnMenuPressed" text="Back to Menu">
+         <tooltip>
+            <Tooltip text="Return to the main menu." />
+         </tooltip></Button>
+      <ProgressIndicator fx:id="pgiWheel" layoutX="353.0" layoutY="341.0" progress="0.0">
+         <tooltip>
+            <Tooltip text="Your current progress." />
+         </tooltip></ProgressIndicator>
       <Label fx:id="lblTitle" layoutX="106.0" layoutY="14.0" text="New Spelling Quiz">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <Label fx:id="lblLevel" alignment="CENTER" layoutX="179.0" layoutY="42.0" text="{None}" textAlignment="CENTER" />
-      <ComboBox fx:id="cmbFestival" layoutX="125.0" layoutY="359.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0" />
+      <ComboBox fx:id="cmbFestival" layoutX="125.0" layoutY="359.0" onAction="#cmbFestivalSelectionChanged" prefWidth="150.0">
+         <tooltip>
+            <Tooltip text="Change the voice." />
+         </tooltip></ComboBox>
    </children>
 </AnchorPane>

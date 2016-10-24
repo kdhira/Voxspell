@@ -9,9 +9,12 @@ public class Music {
     private static Music _musicInstance;
 
     private MediaPlayer mediaPlayer;
+    private boolean _userMuted;
     private Music() {
         Media media = new Media(new File("resources/Mars_Landscape_Sun_Set.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(media);
+
+        _userMuted = false;
     }
 
     public static Music getInstance() {
@@ -23,8 +26,10 @@ public class Music {
     }
 
     public void play() {
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        if (!_userMuted) {
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        }
     }
 
     public void pause() {
@@ -33,6 +38,10 @@ public class Music {
 
     public void stop() {
         mediaPlayer.stop();
+    }
+
+    public void setMute(boolean muted) {
+        _userMuted = muted;
     }
 
 }

@@ -24,7 +24,13 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="btnBack" layoutX="149.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnBackPressed" text="Back to Menu" />
-      <ComboBox fx:id="cmbQuizzes" layoutX="10.0" layoutY="326.0" onAction="#cmbQuizzesSelectionChanged" prefHeight="27.0" prefWidth="380.0" />
+      <Button fx:id="btnBack" layoutX="149.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnBackPressed" text="Back to Menu">
+         <tooltip>
+            <Tooltip text="Return to the main menu." />
+         </tooltip></Button>
+      <ComboBox fx:id="cmbQuizzes" layoutX="10.0" layoutY="326.0" onAction="#cmbQuizzesSelectionChanged" prefHeight="27.0" prefWidth="380.0">
+         <tooltip>
+            <Tooltip text="Select a recent quiz." />
+         </tooltip></ComboBox>
    </children>
 </AnchorPane>

@@ -25,7 +25,10 @@
                   <ComboBox fx:id="cmbTopics" minWidth="250.0" onAction="#cmbTopicsSelectionChanged">
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                     </VBox.margin></ComboBox>
+                     </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="Select a topic to be tested on." />
+                     </tooltip></ComboBox>
                   <Button fx:id="btnNewQuiz" minWidth="250.0" mnemonicParsing="false" onAction="#btnNewQuizPressed" text="%mainMenu.newQuiz" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -46,6 +49,9 @@
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="View your past quizzes." />
+                     </tooltip>
                   </Button>
                   <Button fx:id="btnSettings" minWidth="250.0" mnemonicParsing="false" onAction="#btnSettingsPressed" text="%mainMenu.settings">
                      <tooltip>
@@ -59,6 +65,9 @@
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="View help on how to use Voxspell." />
+                     </tooltip>
                   </Button>
                   <VBox alignment="CENTER">
                      <children>
