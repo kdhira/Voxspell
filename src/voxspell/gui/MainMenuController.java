@@ -16,6 +16,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,12 +62,18 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void btnHelpPressed(ActionEvent event) {
-        //http://stackoverflow.com/questions/2546968/open-pdf-file-on-the-fly-from-a-java-application
         String command = "gnome-open";
         if (System.getProperty("os.name").contains("Mac")) {
             command = "open";
         }
-        ProcessBuilder pb = new ProcessBuilder("bash", "-c", command + " khir664_Voxspell_Manual.pdf");
+        String helpPDF = "khir664_Voxspell_Manual.pdf";
+        if (!new File(helpPDF).exists()) {
+            Alert errorMessage = new Alert(Alert.AlertType.ERROR);
+            errorMessage.setTitle("Help PDF missing.");
+            errorMessage.setContentText("Could not find help PDF \"" + helpPDF + "\". Make sure it is in the working directory.");
+            errorMessage.showAndWait();
+        }
+        ProcessBuilder pb = new ProcessBuilder("bash", "-c", command + " " + helpPDF);
         try {
             pb.start();
         } catch (IOException ex) {
